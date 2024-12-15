@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b75ue0xtdhf4h"]
+[gd_scene load_steps=12 format=3 uid="uid://b75ue0xtdhf4h"]
 
 [ext_resource type="Texture2D" uid="uid://blvl0my17kkbj" path="res://assets/graphics/world/grass.png" id="1_4dvcf"]
 [ext_resource type="Texture2D" uid="uid://b20i0eq1uamx2" path="res://icon.svg" id="1_kbvaw"]
@@ -29,13 +29,21 @@ size = Vector2(50, 15)
 [sub_resource type="BoxShape3D" id="BoxShape3D_pxr5t"]
 size = Vector3(16, 0.25, 16)
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_4hsv8"]
+top_radius = 0.75
+bottom_radius = 0.75
+height = 5.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_v1jbr"]
+size = Vector3(50, 2, 1)
+
 [node name="Test" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wii04")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -0.999999, -4.37114e-08, 0, 0, 0)
 shadow_enabled = true
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
@@ -95,3 +103,19 @@ shape = SubResource("BoxShape3D_pxr5t")
 transform = Transform3D(12.4802, 0, 0, 0, 1.00671, 0, 0, 0, 12.4425, 0, 0, 0)
 axis = 1
 texture = ExtResource("1_kbvaw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.164685, 2.16128, -10.4002)
+mesh = SubResource("CylinderMesh_4hsv8")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.59303, 2.16128, -15.1292)
+mesh = SubResource("CylinderMesh_4hsv8")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5942, 2.16128, -9.05968)
+mesh = SubResource("CylinderMesh_4hsv8")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.1156, 0.974365, -8.00501)
+mesh = SubResource("BoxMesh_v1jbr")

@@ -64,3 +64,8 @@ move_crouch={
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Enemies"
 3d_physics/layer_4="Props"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

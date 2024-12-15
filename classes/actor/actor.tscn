@@ -32,9 +32,8 @@ billboard = 1
 texture = ExtResource("2_jknfh")
 
 [node name="Shadow" type="Decal" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
 layers = 16
-size = Vector3(2, 100, 2)
+size = Vector3(2, 50, 2)
 texture_albedo = SubResource("GradientTexture2D_60r1m")
 cull_mask = 1
 
