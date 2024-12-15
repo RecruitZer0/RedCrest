@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://0gpajxb5vkeo"]
+
+[ext_resource type="PackedScene" uid="uid://b75ue0xtdhf4h" path="res://scenes/test.tscn" id="1_ttsxg"]
+[ext_resource type="PackedScene" uid="uid://stp30remop0a" path="res://classes/actor/player/player.tscn" id="2_v0t7p"]
+
+[node name="Main" type="Node"]
+
+[node name="Test" parent="." instance=ExtResource("1_ttsxg")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 6.082, 16.6554, 16.2897)
+projection = 1
+size = 20.0
+
+[node name="Player" parent="." instance=ExtResource("2_v0t7p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10628, 3.81063, 0.37693)
