@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://bunkecwn6k2u6"]
 
 [ext_resource type="Script" path="res://classes/actor/actor.gd" id="1_wem67"]
-[ext_resource type="Script" path="res://classes/state_machine/state_machine.gd" id="2_1m8o0"]
 [ext_resource type="Texture2D" uid="uid://bsnvehsyf2h6d" path="res://assets/graphics/Little_knight.png" id="2_jknfh"]
+[ext_resource type="Script" path="res://classes/damage/receiver/damage_receiver.gd" id="4_apett"]
 
 [sub_resource type="Gradient" id="Gradient_5r2i4"]
 interpolation_mode = 1
@@ -23,7 +23,7 @@ collision_mask = 13
 script = ExtResource("1_wem67")
 
 [node name="Sprite" type="Sprite3D" parent="."]
-transform = Transform3D(1.23208, 0, 0, 0, 1.05929, 0, 0, 0, 1.2081, 0, -0.2, 0)
+transform = Transform3D(1.23208, 0, 0, 0, 1.05929, 0, 0, 0, 1.2081, 0, 0, 0)
 layers = 2
 sorting_offset = 3.0
 cast_shadow = 0
@@ -31,11 +31,16 @@ gi_mode = 0
 billboard = 1
 texture = ExtResource("2_jknfh")
 
-[node name="Shadow" type="Decal" parent="."]
+[node name="Shadow" type="RayCast3D" parent="."]
+target_position = Vector3(0, -15, 0)
+
+[node name="ShadowSprite" type="Sprite3D" parent="Shadow"]
 layers = 16
-size = Vector3(2, 50, 2)
-texture_albedo = SubResource("GradientTexture2D_60r1m")
-cull_mask = 1
+modulate = Color(0, 0, 0, 1)
+axis = 1
+texture = SubResource("GradientTexture2D_60r1m")
+
+[node name="Collision" type="CollisionShape3D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 active = false
@@ -45,11 +50,15 @@ active = false
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 
-[node name="StateMachine" type="Node" parent="."]
-script = ExtResource("2_1m8o0")
+[node name="DamageReceiver" type="Area3D" parent="." node_paths=PackedStringArray("cooldown")]
+collision_layer = 16
+collision_mask = 32
+script = ExtResource("4_apett")
+cooldown = NodePath("Cooldown")
 
-[node name="Hurtbox" type="CollisionShape3D" parent="."]
+[node name="Collision" type="CollisionShape3D" parent="DamageReceiver"]
 
-[node name="Hitbox" type="Area3D" parent="."]
-
-[node name="Collision" type="CollisionShape3D" parent="Hitbox"]
+[node name="Cooldown" type="Timer" parent="DamageReceiver"]
+process_callback = 0
+wait_time = 0.5
+one_shot = true

@@ -3,7 +3,7 @@ extends Node
 @export var jump_force := 20.0
 @onready var player: Player = owner
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var direction: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var jump_input := Input.is_action_pressed("move_jump") and player.is_on_floor()
 	var jump_release := Input.is_action_just_released("move_jump") and player.velocity.y > 0
@@ -13,3 +13,10 @@ func _physics_process(delta: float) -> void:
 	player.velocity_add.y -= int(jump_release) * jump_force / 2
 	if direction.x:
 		player.sprite.flip_h = direction.x < 0
+	
+	
+	if Input.is_action_pressed("attack"):
+		if player.is_on_floor():
+			player.attack_machine.make_attack(player.attack_machine.get_attack_by_name("Grounded1"))
+		else:
+			player.attack_machine.make_attack(player.attack_machine.get_attack_by_name("Aerial1"))

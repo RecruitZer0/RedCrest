@@ -1,12 +1,12 @@
 class_name Actor extends CharacterBody3D
 
 @onready var sprite: Sprite3D = $Sprite
-@onready var shadow: Decal = $Shadow
+@onready var shadow: RayCast3D = $Shadow
+@onready var shadow_sprite: Sprite3D = $Shadow/ShadowSprite
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
-@onready var state_machine: StateMachine = $StateMachine
-@onready var hurtbox: CollisionShape3D = $Hurtbox
-@onready var hitbox: Area3D = $Hitbox
+@onready var damage_receiver: DamageReceiver = $DamageReceiver
+#@onready var hitbox: Area3D = $Hitbox
 
 
 @export_category("Actor Movement")
@@ -17,6 +17,11 @@ class_name Actor extends CharacterBody3D
 @export var should_move := true
 var movement_dir: Vector3
 var velocity_add: Vector3
+
+@export_category("Visuals")
+@export var shadow_radius := 1.0
+
+
 
 func _ready() -> void:
 	animation_tree.active = true
@@ -30,3 +35,13 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 	movement_dir = Vector3.ZERO
 	velocity_add = Vector3.ZERO
+	
+	_handle_shadow()
+
+func _handle_shadow() -> void:
+	shadow_sprite.visible = shadow.is_colliding()
+	if shadow.is_colliding():
+		var pos := shadow.get_collision_point() - global_position
+		shadow_sprite.position = pos + (Vector3.UP * 0.5) + (Vector3.BACK)
+		shadow_sprite.scale = Vector3.ONE * remap(pos.y, 0, -15, 1, 0) * shadow_radius
+		shadow_sprite.modulate.a = remap(pos.y, 0, -15, 1, 0)
