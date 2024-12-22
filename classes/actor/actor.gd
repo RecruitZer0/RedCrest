@@ -6,7 +6,6 @@ class_name Actor extends CharacterBody3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var damage_receiver: DamageReceiver = $DamageReceiver
-#@onready var hitbox: Area3D = $Hitbox
 
 
 @export_category("Actor Movement")

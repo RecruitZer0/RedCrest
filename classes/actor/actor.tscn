@@ -50,15 +50,15 @@ active = false
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 
-[node name="DamageReceiver" type="Area3D" parent="." node_paths=PackedStringArray("cooldown")]
+[node name="DamageReceiver" type="Area3D" parent="." node_paths=PackedStringArray("knockback_cooldown")]
 collision_layer = 16
 collision_mask = 32
 script = ExtResource("4_apett")
-cooldown = NodePath("Cooldown")
+knockback_cooldown = NodePath("Cooldown")
 
 [node name="Collision" type="CollisionShape3D" parent="DamageReceiver"]
 
 [node name="Cooldown" type="Timer" parent="DamageReceiver"]
 process_callback = 0
-wait_time = 0.5
+wait_time = 0.2
 one_shot = true
