@@ -1,13 +1,19 @@
 @tool
+@icon("res://_editor_stuff/class_icons/damage_receiver.svg")
 class_name DamageReceiver extends Area3D
+## The node responsible for handling damage taken from [DamageInflictor], as well as knockback and damage text.
 
+## Emitted before the damage/knockback is processed, allowing for changes in the properties of [param damage].
 signal before_damaged(damage: Damage)
+## Emitted after the damage/knockback is processed, but still before the damage text is shown, allowing for changes in that.
 signal after_damaged(damage: Damage)
 
+## The minimum time between a knockback and another. Prevents velocity accumulation.
 @export var knockback_cooldown: Timer
+## If the damage text should be shown.
 @export var show_damage_text := true
 
-
+## Applies damage to this receiver.
 func receive_damage(damage: Damage) -> void:
 	before_damaged.emit(damage)
 	if knockback_cooldown.is_stopped() and owner is Actor:

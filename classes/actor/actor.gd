@@ -1,4 +1,8 @@
 class_name Actor extends CharacterBody3D
+## The base class for 2.5D objects
+##
+## Has code for gravity, movement and shadow. All can be disabled.
+
 
 @onready var sprite: Sprite3D = $Sprite
 @onready var shadow: RayCast3D = $Shadow

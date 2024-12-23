@@ -1,4 +1,10 @@
+@icon("res://_editor_stuff/class_icons/damage.svg")
 class_name Damage extends Resource
+## A resource that stores damage information, used by [DamageReceiver] and created by [DamageGenerator].
+##
+## This resource should preferably not be created directly, instead, use a [DamageGenerator].
+## Any description or information on the properties can be read on the [DamageGenerator] documentation.
+
 
 var damage: int
 var knockback_force: float

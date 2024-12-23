@@ -1,8 +1,12 @@
 @tool
+@icon("res://_editor_stuff/class_icons/damage_inflictor.svg")
 class_name DamageInflictor extends Area3D
+## The node responsible for colliding with [DamageReceiver]s and inflicting damage.
 
-signal hit(area: DamageReceiver)
+## Emitted after hitting a [DamageReceiver]
+signal hit(receiver: DamageReceiver)
 
+## The generator that will create the damage applied to other [DamageReceiver]s.
 @export var generator: DamageGenerator
 
 var _areas_in: Dictionary = {}
