@@ -6,7 +6,7 @@ class_name Attack extends Node3D
 
 
 @export_group("Combo")
-@export var next_in_combo: Attack ## An optional attack that will be played instead of this one if it is inside a combo, works in a sequence.
+@export var next_in_combo: Array[Attack] ## An optional amount of attacks that will be played instead of this one if it is inside a combo, works in a sequence. See [method AttackMachine.make_attack]
 @export var combo_timer: Timer ## A Timer that defines if the attack is inside a combo. Having a [member next_in_combo] defined without a timer defined will raise an error when attacking.
 
 @export_group("Visuals")

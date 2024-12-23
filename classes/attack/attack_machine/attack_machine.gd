@@ -32,17 +32,20 @@ var _flipping: bool
 var _flipping_update: bool
 
 
-## Executes the attack defined in [param attack], running its [method Attack.play] method.
+## Executes the attack defined in [param attack] and doing any possible combos, running its [method Attack.play] method.
+##[br] - [param combo_order] Is a series of Array indexes that define which attack should be chosen from the [param attack]'s [member Attack.next_in_combo]. Each "level" of the combo will remove the first element in the array. If the array has one element, it won't be removed.
 ##[br] - [param ignore_combo] Makes the respective attack be executed even if it's inside a combo and has a defined [member Attack.next_in_combo].
 ##[br] - [param play_animation] Defines if the animation should be played. Be careful when setting to false, since [method is_playing] is dependent on animations!
 ##[br] - [param override] Makes the attack be executed even if another attack is already being played.
-func make_attack(attack: Attack, ignore_combo := false, play_animation := true, override := false) -> void:
+func make_attack(attack: Attack, combo_order: PackedInt32Array = [0], ignore_combo := false, play_animation := true, override := false) -> void:
 	if is_attacking() and not override:
 		return
 	
 	if attack.next_in_combo and is_in_combo(attack) and not ignore_combo:
 		attack.combo_timer.stop()
-		make_attack(attack.next_in_combo, ignore_combo, play_animation)
+		if combo_order.size() > 1:
+			combo_order.remove_at(0)
+		make_attack(attack.next_in_combo[combo_order[0]], combo_order, ignore_combo, play_animation)
 		return
 	attack.play()
 	if play_animation and attack.play_animation:
@@ -95,7 +98,9 @@ func is_in_combo(attack: Attack) -> bool:
 	if attack.combo_timer.time_left:
 		return true
 	if attack.next_in_combo:
-		return is_in_combo(attack.next_in_combo)
+		for next in attack.next_in_combo:
+			if is_in_combo(next):
+				return true
 	return false
 
 ## Returns an [Attack] child by the specified name or [code]null[/code]

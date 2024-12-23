@@ -40,7 +40,7 @@ func _attacking() -> void:
 	if disable_input:
 		return
 	
-	if Input.is_action_pressed("attack"):
+	if Input.is_action_pressed("attack_light"):
 		if player.is_on_floor():
 			player.attack_machine.make_attack(player.attack_machine.by_name("Grounded1"))
 		else:

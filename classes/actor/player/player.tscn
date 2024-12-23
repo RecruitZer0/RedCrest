@@ -621,7 +621,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)
 shape = SubResource("CapsuleShape3D_ewbjm")
 
 [node name="AnimationPlayer" parent="." index="4"]
-active = true
 libraries = {
 "": SubResource("AnimationLibrary_eqaqw")
 }
@@ -640,7 +639,7 @@ flipping_property = "flip_h"
 [node name="Grounded1" type="Node3D" parent="AttackMachine" index="0" node_paths=PackedStringArray("next_in_combo", "combo_timer")]
 visible = false
 script = ExtResource("12_h8hr5")
-next_in_combo = NodePath("../Grounded2")
+next_in_combo = [NodePath("../Grounded2")]
 combo_timer = NodePath("Combo")
 
 [node name="Inflictor" type="Area3D" parent="AttackMachine/Grounded1" index="0"]
