@@ -74,6 +74,7 @@ func _process(_delta: float) -> void:
 			if sm.has_transition("attack_%s" % child.name.to_snake_case(), "End"):
 				continue
 			sm.add_transition("attack_%s" % child.name.to_snake_case(), "End", trans)
+		return
 	
 	
 	_blend_tree = animation_tree.tree_root

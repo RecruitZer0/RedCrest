@@ -43,7 +43,6 @@ texture = SubResource("GradientTexture2D_60r1m")
 [node name="Collision" type="CollisionShape3D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-active = false
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 active = false

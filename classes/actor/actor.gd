@@ -23,11 +23,20 @@ var velocity_add: Vector3
 
 @export_category("Visuals")
 @export var shadow_radius := 1.0
+@export var should_flip_offset := true ## If true, when the [member sprite]'s [param flip_h] or [param flip_h] are true, its [member SpriteBase3D.offset] will be flipped as well.
 
 
 
 func _ready() -> void:
 	animation_tree.active = true
+	animation_player.active = false
+
+func _process(_delta: float) -> void:
+	if should_flip_offset and not animation_tree.mixer_applied.is_connected(_flip_offset):
+		animation_tree.mixer_applied.connect(_flip_offset)
+	if not should_flip_offset and animation_tree.mixer_applied.is_connected(_flip_offset):
+		animation_tree.mixer_applied.disconnect(_flip_offset)
+
 
 func _physics_process(delta: float) -> void:
 	if is_on_floor():
@@ -48,3 +57,10 @@ func _handle_shadow() -> void:
 		shadow_sprite.position = pos + (Vector3.UP * 0.5) + (Vector3.BACK)
 		shadow_sprite.scale = Vector3.ONE * remap(pos.y, 0, -15, 1, 0) * shadow_radius
 		shadow_sprite.modulate.a = remap(pos.y, 0, -15, 1, 0)
+
+func _flip_offset() -> void:
+	#await get_tree().process_frame
+	if sprite.flip_h:
+		sprite.offset.x *= -1
+	if sprite.flip_v:
+		sprite.offset.y *= -1
