@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://stp30remop0a"]
+[gd_scene load_steps=56 format=3 uid="uid://stp30remop0a"]
 
 [ext_resource type="PackedScene" uid="uid://bunkecwn6k2u6" path="res://classes/actor/actor.tscn" id="1_ge21v"]
 [ext_resource type="Script" path="res://classes/actor/player/player.gd" id="1_luush"]
@@ -73,8 +73,8 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_xt5h4"]
 resource_name = "air_attack_1"
-length = 0.650005
-step = 0.05
+length = 0.42
+step = 0.03
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -106,7 +106,7 @@ tracks/2/path = NodePath("Sprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65),
+"times": PackedFloat32Array(0, 0.03, 0.06, 0.09, 0.12, 0.15, 0.18, 0.21, 0.24, 0.27, 0.3, 0.33, 0.36, 0.39),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
@@ -572,7 +572,7 @@ nodes/MoveStateMachine/position = Vector2(-240, 133.333)
 nodes/output/position = Vector2(453.333, 133.333)
 node_connections = [&"AttackMachineBlend", 0, &"MoveStateMachine", &"AttackMachineBlend", 1, &"AttackMachine", &"output", 0, &"AttackMachineBlend"]
 
-[sub_resource type="Resource" id="Resource_jchch"]
+[sub_resource type="Resource" id="Resource_ragc1"]
 script = ExtResource("14_0kunq")
 min_damage = 5
 max_damage = 10
@@ -584,12 +584,26 @@ knockback_ignore_cooldown = false
 crit_chance = 0.1
 crit_multiplier = 2.0
 lift_enabled = false
-lift_force = 2.0
+lift_force = 5.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_b43to"]
 radius = 1.75
 
-[sub_resource type="Resource" id="Resource_315hm"]
+[sub_resource type="Resource" id="Resource_nlyft"]
+script = ExtResource("14_0kunq")
+min_damage = 5
+max_damage = 10
+damage_cooldown = 0.2
+knockback_force = 5.0
+knockback_direction = Vector3(0, 0, 0)
+knockback_cooldown_override = 0.0
+knockback_ignore_cooldown = false
+crit_chance = 0.1
+crit_multiplier = 2.0
+lift_enabled = false
+lift_force = 5.0
+
+[sub_resource type="Resource" id="Resource_thwu4"]
 script = ExtResource("14_0kunq")
 min_damage = 5
 max_damage = 10
@@ -601,7 +615,7 @@ knockback_ignore_cooldown = false
 crit_chance = 0.1
 crit_multiplier = 2.0
 lift_enabled = true
-lift_force = 2.0
+lift_force = 5.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_y5ly7"]
 radius = 1.5
@@ -609,28 +623,26 @@ radius = 1.5
 [node name="Player" instance=ExtResource("1_ge21v")]
 script = ExtResource("1_luush")
 
-[node name="Health" type="Node" parent="." index="0"]
-
-[node name="Sprite" parent="." index="1"]
+[node name="Sprite" parent="." index="0"]
 transform = Transform3D(1.23208, 0, 0, 0, 1.05929, 0, 0, 0, 1.2081, 0, -0.15, 0)
 texture = ExtResource("3_1m6us")
 hframes = 21
 
-[node name="Collision" parent="." index="3"]
+[node name="Collision" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)
 shape = SubResource("CapsuleShape3D_ewbjm")
 
-[node name="AnimationPlayer" parent="." index="4"]
+[node name="AnimationPlayer" parent="." index="3"]
 libraries = {
 "": SubResource("AnimationLibrary_eqaqw")
 }
 autoplay = "idle"
 
-[node name="AnimationTree" parent="." index="5"]
+[node name="AnimationTree" parent="." index="4"]
 tree_root = SubResource("AnimationNodeBlendTree_aqyth")
 parameters/AttackMachineBlend/blend_amount = 1
 
-[node name="AttackMachine" type="Node3D" parent="." index="6" node_paths=PackedStringArray("animation_tree", "flipping_node")]
+[node name="AttackMachine" type="Node3D" parent="." index="5" node_paths=PackedStringArray("animation_tree", "flipping_node")]
 script = ExtResource("11_mwaf8")
 animation_tree = NodePath("../AnimationTree")
 flipping_node = NodePath("../Sprite")
@@ -646,7 +658,7 @@ combo_timer = NodePath("Combo")
 collision_layer = 32
 collision_mask = 16
 script = ExtResource("5_ga6fg")
-generator = SubResource("Resource_jchch")
+generator = SubResource("Resource_ragc1")
 
 [node name="Combo" type="Timer" parent="AttackMachine/Grounded1" index="1"]
 wait_time = 2.0
@@ -670,7 +682,7 @@ script = ExtResource("12_h8hr5")
 collision_layer = 32
 collision_mask = 16
 script = ExtResource("5_ga6fg")
-generator = SubResource("Resource_jchch")
+generator = SubResource("Resource_nlyft")
 
 [node name="Action1" type="Node3D" parent="AttackMachine/Grounded2" index="1" node_paths=PackedStringArray("inflictor")]
 script = ExtResource("14_wicsw")
@@ -690,22 +702,22 @@ script = ExtResource("12_h8hr5")
 collision_layer = 32
 collision_mask = 16
 script = ExtResource("5_ga6fg")
-generator = SubResource("Resource_315hm")
+generator = SubResource("Resource_thwu4")
 
 [node name="Action1" type="Node3D" parent="AttackMachine/Aerial1" index="1" node_paths=PackedStringArray("inflictor")]
 script = ExtResource("14_wicsw")
 inflictor = NodePath("../Inflictor")
-delay = 0.3
-duration = 0.2
+delay = 0.18
+duration = 0.15
 
 [node name="Collision" type="CollisionShape3D" parent="AttackMachine/Aerial1/Action1" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.75, 0)
 shape = SubResource("SphereShape3D_b43to")
 
-[node name="Input" type="Node" parent="." index="7"]
+[node name="Input" type="Node" parent="." index="6"]
 script = ExtResource("2_dc65j")
 
-[node name="DamageReceiver" parent="." index="8"]
+[node name="DamageReceiver" parent="." index="7"]
 visible = false
 
 [node name="Collision" parent="DamageReceiver" index="0"]

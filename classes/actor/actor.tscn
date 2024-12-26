@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bunkecwn6k2u6"]
+[gd_scene load_steps=7 format=3 uid="uid://bunkecwn6k2u6"]
 
 [ext_resource type="Script" path="res://classes/actor/actor.gd" id="1_wem67"]
+[ext_resource type="Script" path="res://classes/actor/actor_health.gd" id="2_6bkps"]
 [ext_resource type="Texture2D" uid="uid://bsnvehsyf2h6d" path="res://assets/graphics/Little_knight.png" id="2_jknfh"]
 [ext_resource type="Script" path="res://classes/damage/receiver/damage_receiver.gd" id="4_apett"]
 
@@ -21,6 +22,9 @@ metadata/_snap_enabled = true
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_wem67")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_6bkps")
 
 [node name="Sprite" type="Sprite3D" parent="."]
 transform = Transform3D(1.23208, 0, 0, 0, 1.05929, 0, 0, 0, 1.2081, 0, 0, 0)
@@ -61,3 +65,5 @@ knockback_cooldown = NodePath("Cooldown")
 process_callback = 0
 wait_time = 0.2
 one_shot = true
+
+[connection signal="after_damaged" from="DamageReceiver" to="Health" method="_handle_damage"]

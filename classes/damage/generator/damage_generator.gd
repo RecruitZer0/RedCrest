@@ -19,7 +19,7 @@ class_name DamageGenerator extends Resource
 
 @export_group("Lift", "lift_")
 @export var lift_enabled := false ## If the attacker should be lifted up when landing the attack. Useful for aerial attacks.
-@export var lift_force := 2.0 ## The strenght of the lift applied to the attacker
+@export var lift_force := 5.0 ## The strenght of the lift applied to the attacker
 
 
 ## Creates a [Damage] resource with the values defined in the properties and returns it.
