@@ -79,10 +79,9 @@ attack_heavy={
 3d_render/layer_4="Props"
 3d_render/layer_5="Effects"
 3d_render/layer_6="Particles"
-3d_physics/layer_1="World"
-3d_physics/layer_2="Player"
-3d_physics/layer_3="Enemies"
-3d_physics/layer_4="Props"
+3d_physics/layer_1="World (Ground and walls)"
+3d_physics/layer_2="Moving Actors (Players & Enemies)"
+3d_physics/layer_3="Static Actors (Props)"
 3d_physics/layer_5="Damage Receivers"
 3d_physics/layer_6="Damage Inflictors"
 

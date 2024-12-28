@@ -621,28 +621,29 @@ lift_force = 5.0
 radius = 1.5
 
 [node name="Player" instance=ExtResource("1_ge21v")]
+collision_layer = 2
 script = ExtResource("1_luush")
 
-[node name="Sprite" parent="." index="0"]
+[node name="Sprite" parent="." index="1"]
 transform = Transform3D(1.23208, 0, 0, 0, 1.05929, 0, 0, 0, 1.2081, 0, -0.15, 0)
 texture = ExtResource("3_1m6us")
 hframes = 21
 
-[node name="Collision" parent="." index="2"]
+[node name="Collision" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)
 shape = SubResource("CapsuleShape3D_ewbjm")
 
-[node name="AnimationPlayer" parent="." index="3"]
+[node name="AnimationPlayer" parent="." index="4"]
 libraries = {
 "": SubResource("AnimationLibrary_eqaqw")
 }
 autoplay = "idle"
 
-[node name="AnimationTree" parent="." index="4"]
+[node name="AnimationTree" parent="." index="5"]
 tree_root = SubResource("AnimationNodeBlendTree_aqyth")
 parameters/AttackMachineBlend/blend_amount = 1
 
-[node name="AttackMachine" type="Node3D" parent="." index="5" node_paths=PackedStringArray("animation_tree", "flipping_node")]
+[node name="AttackMachine" type="Node3D" parent="." index="6" node_paths=PackedStringArray("animation_tree", "flipping_node")]
 script = ExtResource("11_mwaf8")
 animation_tree = NodePath("../AnimationTree")
 flipping_node = NodePath("../Sprite")
@@ -714,10 +715,10 @@ duration = 0.15
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.75, 0)
 shape = SubResource("SphereShape3D_b43to")
 
-[node name="Input" type="Node" parent="." index="6"]
+[node name="Input" type="Node" parent="." index="7"]
 script = ExtResource("2_dc65j")
 
-[node name="DamageReceiver" parent="." index="7"]
+[node name="DamageReceiver" parent="." index="8"]
 visible = false
 
 [node name="Collision" parent="DamageReceiver" index="0"]
