@@ -1,12 +1,17 @@
+@tool
 class_name AttackActionHitbox extends AttackAction
 ## An AttackAction that creates damaging hitboxes and adds them to a [DamageInflictor].
 ##
 ## Should have [CollisionShape3D] as children.
 
-@export var inflictor: DamageInflictor ## The inflictor that the hitboxes will be added to.
+@export var inflictor: DamageInflictor : ## The inflictor that the hitboxes will be added to.
+	set(value):
+		inflictor = value
+		update_configuration_warnings()
 var _hitboxes: Array[CollisionShape3D]
 
 func _ready() -> void:
+	if Engine.is_editor_hint(): return
 	for child in get_children(): if child is CollisionShape3D:
 		_hitboxes.append(child)
 		child.disabled = true
@@ -27,3 +32,9 @@ func _trigger_end() -> void:
 func flip(axis: int) -> void:
 	for h in _hitboxes:
 		h.position[axis] *= -1
+
+
+func _get_configuration_warnings() -> PackedStringArray:
+	if not inflictor:
+		return ["Inflictor must be defined."]
+	return []

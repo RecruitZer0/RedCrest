@@ -25,7 +25,8 @@ folder_colors={
 "res://_editor_stuff/": "gray",
 "res://assets/": "red",
 "res://classes/": "green",
-"res://scenes/": "teal"
+"res://globals/": "teal",
+"res://scenes/": "blue"
 }
 
 [input]

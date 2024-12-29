@@ -26,10 +26,6 @@ func receive_damage(damage: Damage) -> void:
 	else:
 		knockback_cooldown.start()
 	
-	if damage.lift_enabled and damage.inflictor:
-		if damage.inflictor.owner is CharacterBody3D:
-			damage.inflictor.owner.velocity.y = damage.lift_force
-	
 	after_damaged.emit(damage)
 	_make_number(damage)
 

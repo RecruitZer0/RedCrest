@@ -25,6 +25,7 @@ func _physics_process(delta: float) -> void:
 	for area in _areas_in.keys():
 		_areas_in[area] = move_toward(_areas_in[area], 0, delta)
 		if _areas_in[area]: continue
+		_areas_in[area] = generator.damage_cooldown
 		area.receive_damage(generator.generate(self))
 		hit.emit(area)
 

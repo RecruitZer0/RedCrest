@@ -17,9 +17,6 @@ class_name DamageGenerator extends Resource
 @export_range(0, 1, 0.1) var crit_chance := 0.1 ## Chance to land a critical hit, between 0 and 1.
 @export var crit_multiplier := 2.0 ## How much the damage will be multiplied by when landing a critical hit.
 
-@export_group("Lift", "lift_")
-@export var lift_enabled := false ## If the attacker should be lifted up when landing the attack. Useful for aerial attacks.
-@export var lift_force := 5.0 ## The strenght of the lift applied to the attacker
 
 
 ## Creates a [Damage] resource with the values defined in the properties and returns it.
@@ -37,9 +34,6 @@ func generate(inflictor: DamageInflictor) -> Damage:
 	resource.knockback_ignore_cooldown = knockback_ignore_cooldown
 	
 	resource.crit_multiplier = crit_multiplier
-	
-	resource.lift_enabled = lift_enabled
-	resource.lift_force = lift_force
 	
 	resource.inflictor = inflictor
 	return resource

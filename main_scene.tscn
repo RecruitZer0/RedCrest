@@ -1,15 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://0gpajxb5vkeo"]
+[gd_scene load_steps=3 format=3 uid="uid://0gpajxb5vkeo"]
 
 [ext_resource type="PackedScene" uid="uid://b75ue0xtdhf4h" path="res://scenes/test.tscn" id="1_ttsxg"]
 [ext_resource type="PackedScene" uid="uid://stp30remop0a" path="res://classes/actor/player/player.tscn" id="2_v0t7p"]
-[ext_resource type="PackedScene" uid="uid://bunkecwn6k2u6" path="res://classes/actor/actor.tscn" id="3_e20fm"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ixolk"]
-radius = 1.0
-height = 3.5
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_uoxe7"]
-radius = 1.5
 
 [node name="Main" type="Node"]
 
@@ -22,15 +14,3 @@ size = 20.0
 
 [node name="Player" parent="." instance=ExtResource("2_v0t7p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10628, 3.81063, 0.37693)
-
-[node name="Dummy" parent="." instance=ExtResource("3_e20fm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.14434, 3.31671, 0.357378)
-collision_layer = 2
-
-[node name="Collision" parent="Dummy" index="3"]
-shape = SubResource("CapsuleShape3D_ixolk")
-
-[node name="Collision" parent="Dummy/DamageReceiver" index="0"]
-shape = SubResource("SphereShape3D_uoxe7")
-
-[editable path="Dummy"]
