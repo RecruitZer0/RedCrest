@@ -2,23 +2,23 @@
 
 [ext_resource type="Script" path="res://classes/actor/actor.gd" id="1_wem67"]
 [ext_resource type="Script" path="res://classes/actor/actor_health.gd" id="2_6bkps"]
-[ext_resource type="Texture2D" uid="uid://bsnvehsyf2h6d" path="res://assets/graphics/Little_knight.png" id="2_jknfh"]
+[ext_resource type="Texture2D" uid="uid://bsnvehsyf2h6d" path="res://assets/graphics/little_knight.png" id="2_jknfh"]
 [ext_resource type="Script" path="res://classes/damage/receiver/damage_receiver.gd" id="4_apett"]
 
 [sub_resource type="Gradient" id="Gradient_5r2i4"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0, 0.672414)
-colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+colors = PackedColorArray(0, 0, 0, 0.784314, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_60r1m"]
 gradient = SubResource("Gradient_5r2i4")
-width = 256
-height = 256
+width = 216
+height = 216
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 metadata/_snap_enabled = true
 
-[node name="Actor" type="CharacterBody3D"]
+[node name="Actor" type="CharacterBody3D" groups=["Actor"]]
 collision_layer = 0
 collision_mask = 5
 script = ExtResource("1_wem67")
@@ -27,12 +27,12 @@ script = ExtResource("1_wem67")
 script = ExtResource("2_6bkps")
 
 [node name="Sprite" type="Sprite3D" parent="."]
-transform = Transform3D(1.23208, 0, 0, 0, 1.05929, 0, 0, 0, 1.2081, 0, 0, 0)
-layers = 2
+layers = 4
 sorting_offset = 3.0
 cast_shadow = 0
 gi_mode = 0
-billboard = 1
+billboard = 2
+double_sided = false
 texture = ExtResource("2_jknfh")
 
 [node name="Shadow" type="RayCast3D" parent="."]
@@ -65,5 +65,9 @@ knockback_cooldown = NodePath("Cooldown")
 process_callback = 0
 wait_time = 0.2
 one_shot = true
+
+[node name="VisibleOnScreen" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+layers = 0
 
 [connection signal="after_damaged" from="DamageReceiver" to="Health" method="_handle_damage"]

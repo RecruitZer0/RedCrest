@@ -1,8 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://b75ue0xtdhf4h"]
+[gd_scene load_steps=18 format=3 uid="uid://b75ue0xtdhf4h"]
 
 [ext_resource type="Texture2D" uid="uid://blvl0my17kkbj" path="res://assets/graphics/world/grass.png" id="1_4dvcf"]
-[ext_resource type="Texture2D" uid="uid://b20i0eq1uamx2" path="res://icon.svg" id="1_kbvaw"]
 [ext_resource type="PackedScene" uid="uid://bunkecwn6k2u6" path="res://classes/actor/actor.tscn" id="3_xiaeb"]
+[ext_resource type="PackedScene" uid="uid://upxfjqwb6nvn" path="res://classes/actor/npc/placeholder_guy/placeholder_guy.tscn" id="4_236mo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_aanyq"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -17,8 +17,6 @@ sky = SubResource("Sky_flhl8")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_hce03"]
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e0t0n"]
 albedo_texture = ExtResource("1_4dvcf")
 uv1_scale = Vector3(1.575, 1.575, 1.575)
@@ -27,12 +25,22 @@ uv1_scale = Vector3(1.575, 1.575, 1.575)
 material = SubResource("StandardMaterial3D_e0t0n")
 size = Vector2(50, 15)
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_5bffb"]
-vertices = PackedVector3Array(25, 0, 7.5, -25, 0, 7.5, 25, 0, -7.5, -25, 0, -7.5)
-polygons = [PackedInt32Array(0, 1, 2), PackedInt32Array(1, 3, 2)]
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_hce03"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rncxm"]
+albedo_texture = ExtResource("1_4dvcf")
+uv1_scale = Vector3(3, 3, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5d30j"]
+material = SubResource("StandardMaterial3D_rncxm")
+size = Vector3(15, 3, 15)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pxr5t"]
-size = Vector3(16, 0.25, 16)
+size = Vector3(15, 3, 15)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_dfunx"]
+vertices = PackedVector3Array(-9.7936, 0.5, -7, -9.7936, 0.5, 7, 36.9564, 0.5, 7, 36.9564, 0.5, -7, 37.9564, 3.5, -7, 37.9564, 3.5, 7, 51.9564, 3.5, 7, 51.9564, 3.5, -7, 52.9564, 6.5, -7, 52.9564, 6.5, 7, 66.9564, 6.5, 7, 66.9564, 6.5, -7, 38.2064, 0.5, -6.75, 38.2064, 0.5, 6.75, 39.2064, 0.5, 6.75, 39.2064, 0.5, -6.75)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(11, 10, 8), PackedInt32Array(8, 10, 9), PackedInt32Array(15, 14, 12), PackedInt32Array(12, 14, 13)]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_4hsv8"]
 top_radius = 0.75
@@ -61,44 +69,55 @@ shadow_enabled = true
 [node name="Ground" type="StaticBody3D" parent="."]
 collision_mask = 15
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, -0.125, -0.05)
-shape = SubResource("WorldBoundaryShape3D_hce03")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+[node name="MainGround" type="MeshInstance3D" parent="Ground"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7064, 0, 0)
 mesh = SubResource("PlaneMesh_mlo6u")
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Ground/MeshInstance3D"]
-navigation_mesh = SubResource("NavigationMesh_5bffb")
+[node name="WorldBoundary" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("WorldBoundaryShape3D_hce03")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.05, 1.875, -0.05)
+[node name="StairMesh1" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.5, 0)
+mesh = SubResource("BoxMesh_5d30j")
+
+[node name="StairCol1" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.5, 0)
 shape = SubResource("BoxShape3D_pxr5t")
 
-[node name="Sprite3D" type="Sprite3D" parent="Ground"]
-transform = Transform3D(12.4802, 0, 0, 0, 1.00671, 0, 0, 0, 12.4425, 48, 2, 0)
-axis = 1
-texture = ExtResource("1_kbvaw")
+[node name="StairMesh2" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 4.5, 0)
+mesh = SubResource("BoxMesh_5d30j")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.05, 3.875, -0.05)
+[node name="StairCol2" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 4.5, 0)
 shape = SubResource("BoxShape3D_pxr5t")
 
-[node name="Sprite3D2" type="Sprite3D" parent="Ground"]
-transform = Transform3D(12.4802, 0, 0, 0, 1.00671, 0, 0, 0, 12.4425, 64, 4, 0)
-axis = 1
-texture = ExtResource("1_kbvaw")
+[node name="NavRegion" type="NavigationRegion3D" parent="Ground"]
+navigation_mesh = SubResource("NavigationMesh_dfunx")
 
-[node name="Sprite3D3" type="Sprite3D" parent="Ground"]
-transform = Transform3D(-7.47065e-08, -1.00671, 0, 1.70909, -4.40047e-08, 0, 0, 0, 12.4425, 40, 1, 0)
-axis = 1
-texture = ExtResource("1_kbvaw")
+[node name="NavLink1" type="NavigationLink3D" parent="Ground/NavRegion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.5, 0, -5)
+end_position = Vector3(2, 3, 0)
 
-[node name="Sprite3D4" type="Sprite3D" parent="Ground"]
-transform = Transform3D(-7.47065e-08, -1.00671, 0, 1.70909, -4.40047e-08, 0, 0, 0, 12.4425, 56, 3, 0)
-axis = 1
-texture = ExtResource("1_kbvaw")
+[node name="NavLink2" type="NavigationLink3D" parent="Ground/NavRegion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.5, 0, 0)
+end_position = Vector3(2, 3, 0)
+
+[node name="NavLink3" type="NavigationLink3D" parent="Ground/NavRegion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.5, 0, 5)
+end_position = Vector3(2, 3, 0)
+
+[node name="NavLink4" type="NavigationLink3D" parent="Ground/NavRegion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.5, 3, -5)
+end_position = Vector3(2, 3, 0)
+
+[node name="NavLink5" type="NavigationLink3D" parent="Ground/NavRegion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.5, 3, 0)
+end_position = Vector3(2, 3, 0)
+
+[node name="NavLink6" type="NavigationLink3D" parent="Ground/NavRegion"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.5, 3, 5)
+end_position = Vector3(2, 3, 0)
 
 [node name="Background" type="Node3D" parent="."]
 
@@ -130,5 +149,9 @@ shape = SubResource("CapsuleShape3D_x4ssm")
 
 [node name="Collision" parent="Dummy/DamageReceiver" index="0"]
 shape = SubResource("SphereShape3D_1c1nv")
+
+[node name="PlaceholderGuy" parent="." instance=ExtResource("4_236mo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.921, 1, -4.263)
+jump_wall_distance = 3.0
 
 [editable path="Dummy"]

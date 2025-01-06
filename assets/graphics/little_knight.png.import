@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bsnvehsyf2h6d"
-path.s3tc="res://.godot/imported/Little_knight.png-752cf7df63a0bb334ee834a4ffbddc63.s3tc.ctex"
+path.s3tc="res://.godot/imported/little_knight.png-ff870530fce48451baa1f289b1e8c257.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/graphics/Little_knight.png"
-dest_files=["res://.godot/imported/Little_knight.png-752cf7df63a0bb334ee834a4ffbddc63.s3tc.ctex"]
+source_file="res://assets/graphics/little_knight.png"
+dest_files=["res://.godot/imported/little_knight.png-ff870530fce48451baa1f289b1e8c257.s3tc.ctex"]
 
 [params]
 

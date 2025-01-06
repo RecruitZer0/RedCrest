@@ -29,6 +29,11 @@ folder_colors={
 "res://scenes/": "blue"
 }
 
+[global_group]
+
+Actor="All Actor-derived Nodes."
+Player="The player(s)."
+
 [input]
 
 move_up={
@@ -76,7 +81,7 @@ attack_heavy={
 
 3d_render/layer_1="World"
 3d_render/layer_2="Players"
-3d_render/layer_3="Enemies"
+3d_render/layer_3="NPCs"
 3d_render/layer_4="Props"
 3d_render/layer_5="Effects"
 3d_render/layer_6="Particles"

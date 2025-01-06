@@ -122,7 +122,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(48, 20)]
+"values": [Vector2(48, 192)]
 }
 
 [sub_resource type="Animation" id="Animation_q65d3"]
@@ -175,7 +175,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(80, 48)]
+"values": [Vector2(80, 231)]
 }
 
 [sub_resource type="Animation" id="Animation_gniih"]
@@ -228,7 +228,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(36, 16)]
+"values": [Vector2(36, 200)]
 }
 
 [sub_resource type="Animation" id="Animation_2skio"]
@@ -281,7 +281,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(0, 176)]
 }
 
 [sub_resource type="Animation" id="Animation_fbg6s"]
@@ -335,7 +335,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(0, 184)]
 }
 
 [sub_resource type="Animation" id="Animation_puabh"]
@@ -388,7 +388,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(0, 192)]
 }
 
 [sub_resource type="Animation" id="Animation_uya7k"]
@@ -442,7 +442,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 10)]
+"values": [Vector2(0, 194)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eqaqw"]
@@ -492,7 +492,7 @@ states/attack_grounded_1/position = Vector2(247.667, 13.8889)
 states/attack_grounded_2/node = SubResource("AnimationNodeAnimation_bm3om")
 states/attack_grounded_2/position = Vector2(459.667, 12.4074)
 transitions = ["attack_grounded_2", "End", SubResource("AnimationNodeStateMachineTransition_6j8c2"), "attack_grounded_1", "End", SubResource("AnimationNodeStateMachineTransition_wx5jc"), "Start", "End", SubResource("AnimationNodeStateMachineTransition_ii2sw"), "attack_aerial_1", "End", SubResource("AnimationNodeStateMachineTransition_idema")]
-graph_offset = Vector2(-345, 46)
+graph_offset = Vector2(-247, -71)
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_mywfe"]
 
@@ -564,6 +564,7 @@ transitions = ["idle", "run", SubResource("AnimationNodeStateMachineTransition_5
 graph_offset = Vector2(-245.75, 150.237)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_aqyth"]
+graph_offset = Vector2(-548.727, 57.5758)
 nodes/AttackMachine/node = SubResource("AnimationNodeStateMachine_dibl6")
 nodes/AttackMachine/position = Vector2(-240, 346.667)
 nodes/AttackMachineBlend/node = SubResource("AnimationNodeBlend2_mywfe")
@@ -615,17 +616,18 @@ crit_multiplier = 2.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_y5ly7"]
 radius = 1.5
 
-[node name="Player" instance=ExtResource("1_ge21v")]
+[node name="Player" groups=["Player"] instance=ExtResource("1_ge21v")]
 collision_layer = 2
 script = ExtResource("1_luush")
+tags = Array[int]([0])
 
 [node name="Sprite" parent="." index="1"]
-transform = Transform3D(1.23208, 0, 0, 0, 1.05929, 0, 0, 0, 1.2081, 0, -0.15, 0)
+layers = 2
 texture = ExtResource("3_1m6us")
 hframes = 21
 
 [node name="Collision" parent="." index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
 shape = SubResource("CapsuleShape3D_ewbjm")
 
 [node name="AnimationPlayer" parent="." index="4"]
@@ -636,7 +638,7 @@ autoplay = "idle"
 
 [node name="AnimationTree" parent="." index="5"]
 tree_root = SubResource("AnimationNodeBlendTree_aqyth")
-parameters/AttackMachineBlend/blend_amount = 1
+parameters/AttackMachineBlend/blend_amount = 0.0
 
 [node name="AttackMachine" type="Node3D" parent="." index="6" node_paths=PackedStringArray("animation_tree", "flipping_node")]
 script = ExtResource("11_mwaf8")
@@ -645,7 +647,6 @@ flipping_node = NodePath("../Sprite")
 flipping_property = "flip_h"
 
 [node name="Grounded1" type="Node3D" parent="AttackMachine" index="0" node_paths=PackedStringArray("next_in_combo", "combo_timer")]
-visible = false
 script = ExtResource("12_h8hr5")
 next_in_combo = [NodePath("../Grounded2")]
 combo_timer = NodePath("Combo")
@@ -719,8 +720,6 @@ duration = 0.42
 [node name="Input" type="Node" parent="." index="7"]
 script = ExtResource("2_dc65j")
 
-[node name="DamageReceiver" parent="." index="8"]
-visible = false
-
 [node name="Collision" parent="DamageReceiver" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
 shape = SubResource("SphereShape3D_y5ly7")

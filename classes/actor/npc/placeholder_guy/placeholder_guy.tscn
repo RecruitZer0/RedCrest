@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://upxfjqwb6nvn"]
+
+[ext_resource type="PackedScene" uid="uid://css3m5hk78lr4" path="res://classes/actor/npc/follow_npc.tscn" id="1_ktk8q"]
+
+[node name="PlaceholderGuy" instance=ExtResource("1_ktk8q")]
+follow_targets = Array[int]([0])
+automatically_target = true
+tags = Array[int]([1])
+
+[node name="NavigationAgent" parent="." index="0"]
+debug_enabled = true

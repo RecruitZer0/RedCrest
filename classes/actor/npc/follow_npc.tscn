@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://css3m5hk78lr4"]
+
+[ext_resource type="PackedScene" uid="uid://bunkecwn6k2u6" path="res://classes/actor/actor.tscn" id="1_g3etu"]
+[ext_resource type="Script" path="res://classes/actor/npc/follow_npc.gd" id="2_nnu8b"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cbmm8"]
+radius = 1.0
+height = 3.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6n4ms"]
+radius = 1.5
+
+[node name="FollowNPC" instance=ExtResource("1_g3etu")]
+collision_layer = 2
+script = ExtResource("2_nnu8b")
+follow_targets = Array[int]([])
+minimum_distance = 2.0
+automatically_target = true
+switch_to_attacker = true
+align_axis = 1
+align_margin = 0.4
+jump_force = 20.0
+jump_wall_distance = 3.0
+jump_ground_distance = 2.0
+jump_ground_depth = 10.0
+max_speed = 6.0
+acceleration = 30.0
+
+[node name="NavigationAgent" type="NavigationAgent3D" parent="." index="0"]
+simplify_path = true
+simplify_epsilon = 1.0
+
+[node name="RayWall" type="RayCast3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(0, 0.1, 0)
+collision_mask = 5
+
+[node name="RayGround" type="RayCast3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(0, -10, 0)
+collision_mask = 5
+
+[node name="Sprite" parent="." index="4"]
+offset = Vector2(0, 184)
+
+[node name="Collision" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
+shape = SubResource("CapsuleShape3D_cbmm8")
+
+[node name="Collision" parent="DamageReceiver" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
+shape = SubResource("SphereShape3D_6n4ms")
+
+[connection signal="after_damaged" from="DamageReceiver" to="." method="_switch_to_attacker"]
