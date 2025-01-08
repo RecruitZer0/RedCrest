@@ -1,18 +1,22 @@
-[gd_scene load_steps=57 format=3 uid="uid://stp30remop0a"]
+[gd_scene load_steps=79 format=3 uid="uid://stp30remop0a"]
 
 [ext_resource type="PackedScene" uid="uid://bunkecwn6k2u6" path="res://classes/actor/actor.tscn" id="1_ge21v"]
 [ext_resource type="Script" path="res://classes/actor/player/player.gd" id="1_luush"]
-[ext_resource type="Texture2D" uid="uid://clkm12fjivygi" path="res://assets/graphics/entities/player/player_air_attack.png" id="2_c7d5k"]
+[ext_resource type="Texture2D" uid="uid://clkm12fjivygi" path="res://assets/graphics/entities/player/attack/aerial_1.png" id="2_c7d5k"]
 [ext_resource type="Script" path="res://classes/actor/player/player_input.gd" id="2_dc65j"]
 [ext_resource type="Texture2D" uid="uid://bbm71leiucmu4" path="res://assets/graphics/entities/player/player_run.png" id="2_onqbv"]
 [ext_resource type="Texture2D" uid="uid://bcbpsiawnxfgg" path="res://assets/graphics/entities/player/player_idle.png" id="3_1m6us"]
-[ext_resource type="Texture2D" uid="uid://do1okxwem3dsq" path="res://assets/graphics/entities/player/player_attack_1.png" id="4_0e1rr"]
+[ext_resource type="Texture2D" uid="uid://do1okxwem3dsq" path="res://assets/graphics/entities/player/attack/grounded_3.png" id="4_0e1rr"]
 [ext_resource type="Script" path="res://classes/damage/inflictor/damage_inflictor.gd" id="5_ga6fg"]
-[ext_resource type="Texture2D" uid="uid://dvxh0whvoimxi" path="res://assets/graphics/entities/player/player_attack_2.png" id="5_wqjof"]
+[ext_resource type="Texture2D" uid="uid://dvxh0whvoimxi" path="res://assets/graphics/entities/player/attack/grounded_1.png" id="5_wqjof"]
 [ext_resource type="Texture2D" uid="uid://d05ica6nugc5y" path="res://assets/graphics/entities/player/player_jump.png" id="6_osfek"]
 [ext_resource type="Texture2D" uid="uid://bhc6e4ytph6uq" path="res://assets/graphics/entities/player/player_fall.png" id="7_eepb5"]
+[ext_resource type="Texture2D" uid="uid://bmrr65g43epbx" path="res://assets/graphics/entities/player/attack/grounded_2.png" id="10_jr2xe"]
 [ext_resource type="Script" path="res://classes/attack/attack_machine/attack_machine.gd" id="11_mwaf8"]
+[ext_resource type="Texture2D" uid="uid://whnfm0ylvdm3" path="res://assets/graphics/entities/player/attack/uppercut.png" id="11_tad71"]
+[ext_resource type="Texture2D" uid="uid://b1k0x0vbljoy3" path="res://assets/graphics/entities/player/attack/grounded_4.png" id="12_510g6"]
 [ext_resource type="Script" path="res://classes/attack/attack.gd" id="12_h8hr5"]
+[ext_resource type="Texture2D" uid="uid://dq6jpto77fv2" path="res://assets/graphics/entities/player/attack/aerial_2.png" id="13_i48yv"]
 [ext_resource type="Script" path="res://classes/damage/generator/damage_generator.gd" id="14_0kunq"]
 [ext_resource type="Script" path="res://classes/attack/action/hitbox/action_hitbox.gd" id="14_wicsw"]
 [ext_resource type="Script" path="res://classes/attack/action/lift/action_lift.gd" id="15_7khi3"]
@@ -123,112 +127,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(48, 192)]
-}
-
-[sub_resource type="Animation" id="Animation_q65d3"]
-resource_name = "attack_1"
-length = 0.84
-step = 0.04
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("4_0e1rr")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [21]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32, 0.36, 0.4, 0.44, 0.48, 0.52, 0.56, 0.6, 0.64, 0.68, 0.72, 0.76, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 19]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite:offset")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(80, 231)]
-}
-
-[sub_resource type="Animation" id="Animation_gniih"]
-resource_name = "attack_2"
-length = 0.56
-step = 0.04
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("5_wqjof")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [14]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32, 0.36, 0.4, 0.44, 0.48, 0.52),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite:offset")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(36, 200)]
 }
 
 [sub_resource type="Animation" id="Animation_2skio"]
@@ -445,54 +343,412 @@ tracks/3/keys = {
 "values": [Vector2(0, 194)]
 }
 
+[sub_resource type="Animation" id="Animation_q65d3"]
+resource_name = "attack_grounded_3"
+length = 0.84
+step = 0.04
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_0e1rr")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [21]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32, 0.36, 0.4, 0.44, 0.48, 0.52, 0.56, 0.6, 0.64, 0.68, 0.72, 0.76, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 19]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80, 231)]
+}
+
+[sub_resource type="Animation" id="Animation_gniih"]
+resource_name = "attack_grounded_1"
+length = 0.56
+step = 0.04
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_wqjof")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [14]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32, 0.36, 0.4, 0.44, 0.48, 0.52),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(36, 200)]
+}
+
+[sub_resource type="Animation" id="Animation_wkeoh"]
+resource_name = "attack_grounded_2"
+length = 0.54
+step = 0.09
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("10_jr2xe")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.09, 0.18, 0.27, 0.36, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(36, 206)]
+}
+
+[sub_resource type="Animation" id="Animation_08qgl"]
+resource_name = "attack_uppercut"
+length = 0.48
+step = 0.04
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("11_tad71")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32, 0.36, 0.4, 0.44),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-12, 338)]
+}
+
+[sub_resource type="Animation" id="Animation_w0sg0"]
+resource_name = "attack_grounded_4"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("12_510g6")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(192, 195)]
+}
+
+[sub_resource type="Animation" id="Animation_d8gk6"]
+resource_name = "attack_aerial_2"
+length = 0.35
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("13_i48yv")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(24, 206)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eqaqw"]
 _data = {
 "RESET": SubResource("Animation_exc2i"),
 "attack_aerial_1": SubResource("Animation_xt5h4"),
-"attack_grounded_1": SubResource("Animation_q65d3"),
-"attack_grounded_2": SubResource("Animation_gniih"),
+"attack_aerial_2": SubResource("Animation_d8gk6"),
+"attack_grounded_1": SubResource("Animation_gniih"),
+"attack_grounded_2": SubResource("Animation_wkeoh"),
+"attack_grounded_3": SubResource("Animation_q65d3"),
+"attack_grounded_4": SubResource("Animation_w0sg0"),
+"attack_uppercut": SubResource("Animation_08qgl"),
 "fall": SubResource("Animation_2skio"),
 "idle": SubResource("Animation_fbg6s"),
 "jump": SubResource("Animation_puabh"),
 "run": SubResource("Animation_uya7k")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8t18m"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qirla"]
 animation = &"attack_aerial_1"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sh3qg"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_de5m4"]
+animation = &"attack_aerial_2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pgjtx"]
 animation = &"attack_grounded_1"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bm3om"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t31es"]
 animation = &"attack_grounded_2"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6j8c2"]
-switch_mode = 2
-advance_mode = 2
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yhdnt"]
+animation = &"attack_grounded_3"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wx5jc"]
-switch_mode = 2
-advance_mode = 2
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_voslg"]
+animation = &"attack_grounded_4"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sxsun"]
+animation = &"attack_uppercut"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ii2sw"]
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_idema"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bdplq"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2d6ng"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fgpf0"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3sa8k"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1i8o6"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c1mxu"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mt3hs"]
 switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_dibl6"]
-states/End/position = Vector2(770.667, 70.8143)
+states/End/position = Vector2(1053.33, 85.481)
 states/Start/position = Vector2(10.6667, 100.444)
-states/attack_aerial_1/node = SubResource("AnimationNodeAnimation_8t18m")
-states/attack_aerial_1/position = Vector2(248.111, 133)
-states/attack_grounded_1/node = SubResource("AnimationNodeAnimation_sh3qg")
-states/attack_grounded_1/position = Vector2(247.667, 13.8889)
-states/attack_grounded_2/node = SubResource("AnimationNodeAnimation_bm3om")
-states/attack_grounded_2/position = Vector2(459.667, 12.4074)
-transitions = ["attack_grounded_2", "End", SubResource("AnimationNodeStateMachineTransition_6j8c2"), "attack_grounded_1", "End", SubResource("AnimationNodeStateMachineTransition_wx5jc"), "Start", "End", SubResource("AnimationNodeStateMachineTransition_ii2sw"), "attack_aerial_1", "End", SubResource("AnimationNodeStateMachineTransition_idema")]
-graph_offset = Vector2(-247, -71)
+states/attack_aerial_1/node = SubResource("AnimationNodeAnimation_qirla")
+states/attack_aerial_1/position = Vector2(243.333, 156.667)
+states/attack_aerial_2/node = SubResource("AnimationNodeAnimation_de5m4")
+states/attack_aerial_2/position = Vector2(435.667, 157.222)
+states/attack_grounded_1/node = SubResource("AnimationNodeAnimation_pgjtx")
+states/attack_grounded_1/position = Vector2(136.667, -18)
+states/attack_grounded_2/node = SubResource("AnimationNodeAnimation_t31es")
+states/attack_grounded_2/position = Vector2(363.333, -19.3333)
+states/attack_grounded_3/node = SubResource("AnimationNodeAnimation_yhdnt")
+states/attack_grounded_3/position = Vector2(582, -18.5926)
+states/attack_grounded_4/node = SubResource("AnimationNodeAnimation_voslg")
+states/attack_grounded_4/position = Vector2(812.333, -18.1111)
+states/attack_uppercut/node = SubResource("AnimationNodeAnimation_sxsun")
+states/attack_uppercut/position = Vector2(243.778, 264.667)
+transitions = ["Start", "End", SubResource("AnimationNodeStateMachineTransition_ii2sw"), "attack_grounded_1", "End", SubResource("AnimationNodeStateMachineTransition_bdplq"), "attack_grounded_2", "End", SubResource("AnimationNodeStateMachineTransition_2d6ng"), "attack_grounded_3", "End", SubResource("AnimationNodeStateMachineTransition_fgpf0"), "attack_aerial_1", "End", SubResource("AnimationNodeStateMachineTransition_3sa8k"), "attack_uppercut", "End", SubResource("AnimationNodeStateMachineTransition_1i8o6"), "attack_grounded_4", "End", SubResource("AnimationNodeStateMachineTransition_c1mxu"), "attack_aerial_2", "End", SubResource("AnimationNodeStateMachineTransition_mt3hs")]
+graph_offset = Vector2(-87, 37)
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_mywfe"]
 
@@ -564,7 +820,7 @@ transitions = ["idle", "run", SubResource("AnimationNodeStateMachineTransition_5
 graph_offset = Vector2(-245.75, 150.237)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_aqyth"]
-graph_offset = Vector2(-548.727, 57.5758)
+graph_offset = Vector2(-552.727, 330.667)
 nodes/AttackMachine/node = SubResource("AnimationNodeStateMachine_dibl6")
 nodes/AttackMachine/position = Vector2(-240, 346.667)
 nodes/AttackMachineBlend/node = SubResource("AnimationNodeBlend2_mywfe")
@@ -573,21 +829,6 @@ nodes/MoveStateMachine/node = SubResource("AnimationNodeStateMachine_7d8e8")
 nodes/MoveStateMachine/position = Vector2(-240, 133.333)
 nodes/output/position = Vector2(453.333, 133.333)
 node_connections = [&"AttackMachineBlend", 0, &"MoveStateMachine", &"AttackMachineBlend", 1, &"AttackMachine", &"output", 0, &"AttackMachineBlend"]
-
-[sub_resource type="Resource" id="Resource_ragc1"]
-script = ExtResource("14_0kunq")
-min_damage = 5
-max_damage = 10
-damage_cooldown = 0.2
-knockback_force = 5.0
-knockback_direction = Vector3(0, 0, 0)
-knockback_cooldown_override = 0.0
-knockback_ignore_cooldown = false
-crit_chance = 0.1
-crit_multiplier = 2.0
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_b43to"]
-radius = 1.75
 
 [sub_resource type="Resource" id="Resource_nlyft"]
 script = ExtResource("14_0kunq")
@@ -601,7 +842,37 @@ knockback_ignore_cooldown = false
 crit_chance = 0.1
 crit_multiplier = 2.0
 
-[sub_resource type="Resource" id="Resource_thwu4"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_b43to"]
+radius = 1.5
+
+[sub_resource type="Resource" id="Resource_sa83y"]
+script = ExtResource("14_0kunq")
+min_damage = 2
+max_damage = 3
+damage_cooldown = 0.09
+knockback_force = 5.0
+knockback_direction = Vector3(-1, -1, 0)
+knockback_cooldown_override = 0.09
+knockback_ignore_cooldown = false
+crit_chance = 0.0
+crit_multiplier = 2.0
+
+[sub_resource type="Resource" id="Resource_6jr2v"]
+script = ExtResource("14_0kunq")
+min_damage = 6
+max_damage = 12
+damage_cooldown = 0.2
+knockback_force = 8.5
+knockback_direction = Vector3(0, 0, 0)
+knockback_cooldown_override = 0.0
+knockback_ignore_cooldown = false
+crit_chance = 0.1
+crit_multiplier = 2.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cxdh1"]
+radius = 1.25
+
+[sub_resource type="Resource" id="Resource_db75h"]
 script = ExtResource("14_0kunq")
 min_damage = 5
 max_damage = 10
@@ -612,6 +883,37 @@ knockback_cooldown_override = 0.0
 knockback_ignore_cooldown = false
 crit_chance = 0.1
 crit_multiplier = 2.0
+
+[sub_resource type="Resource" id="Resource_erb7i"]
+script = ExtResource("14_0kunq")
+min_damage = 5
+max_damage = 10
+damage_cooldown = 0.2
+knockback_force = 5.0
+knockback_direction = Vector3(0, 0, 0)
+knockback_cooldown_override = 0.0
+knockback_ignore_cooldown = false
+crit_chance = 0.1
+crit_multiplier = 2.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_56i4n"]
+radius = 1.5
+
+[sub_resource type="Resource" id="Resource_okun4"]
+script = ExtResource("14_0kunq")
+min_damage = 5
+max_damage = 10
+damage_cooldown = 0.2
+knockback_force = 5.0
+knockback_direction = Vector3(0, 0, 0)
+knockback_cooldown_override = 0.0
+knockback_ignore_cooldown = false
+crit_chance = 0.1
+crit_multiplier = 2.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_olinu"]
+height = 3.0
+radius = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_y5ly7"]
 radius = 1.5
@@ -647,71 +949,195 @@ flipping_node = NodePath("../Sprite")
 flipping_property = "flip_h"
 
 [node name="Grounded1" type="Node3D" parent="AttackMachine" index="0" node_paths=PackedStringArray("next_in_combo", "combo_timer")]
+visible = false
 script = ExtResource("12_h8hr5")
 next_in_combo = [NodePath("../Grounded2")]
 combo_timer = NodePath("Combo")
 
-[node name="Inflictor" type="Area3D" parent="AttackMachine/Grounded1" index="0"]
-collision_layer = 32
-collision_mask = 16
-script = ExtResource("5_ga6fg")
-generator = SubResource("Resource_ragc1")
-
-[node name="Combo" type="Timer" parent="AttackMachine/Grounded1" index="1"]
+[node name="Combo" type="Timer" parent="AttackMachine/Grounded1" index="0"]
 wait_time = 2.0
 one_shot = true
 
-[node name="Hitbox1" type="Node3D" parent="AttackMachine/Grounded1" index="2" node_paths=PackedStringArray("inflictor")]
-script = ExtResource("14_wicsw")
-inflictor = NodePath("../Inflictor")
-delay = 0.48
-duration = 0.16
-
-[node name="Collision" type="CollisionShape3D" parent="AttackMachine/Grounded1/Hitbox1" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
-shape = SubResource("SphereShape3D_b43to")
-
-[node name="Grounded2" type="Node3D" parent="AttackMachine" index="1"]
-visible = false
-script = ExtResource("12_h8hr5")
-
-[node name="Inflictor" type="Area3D" parent="AttackMachine/Grounded2" index="0"]
+[node name="Inflictor" type="Area3D" parent="AttackMachine/Grounded1" index="1"]
 collision_layer = 32
 collision_mask = 16
 script = ExtResource("5_ga6fg")
 generator = SubResource("Resource_nlyft")
 
-[node name="Hitbox1" type="Node3D" parent="AttackMachine/Grounded2" index="1" node_paths=PackedStringArray("inflictor")]
+[node name="Hitbox1" type="Node3D" parent="AttackMachine/Grounded1" index="2" node_paths=PackedStringArray("inflictor")]
 script = ExtResource("14_wicsw")
 inflictor = NodePath("../Inflictor")
 delay = 0.24
 duration = 0.2
 
-[node name="Collision" type="CollisionShape3D" parent="AttackMachine/Grounded2/Hitbox1" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+[node name="Collision" type="CollisionShape3D" parent="AttackMachine/Grounded1/Hitbox1" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1.75, 0)
 shape = SubResource("SphereShape3D_b43to")
 
-[node name="Aerial1" type="Node3D" parent="AttackMachine" index="2"]
+[node name="Grounded2" type="Node3D" parent="AttackMachine" index="1" node_paths=PackedStringArray("next_in_combo", "combo_timer")]
 visible = false
 script = ExtResource("12_h8hr5")
+next_in_combo = [NodePath("../Grounded3")]
+combo_timer = NodePath("Combo")
 
-[node name="Inflictor" type="Area3D" parent="AttackMachine/Aerial1" index="0"]
+[node name="Combo" type="Timer" parent="AttackMachine/Grounded2" index="0"]
+wait_time = 2.0
+one_shot = true
+
+[node name="Inflictor1" type="Area3D" parent="AttackMachine/Grounded2" index="1"]
 collision_layer = 32
 collision_mask = 16
 script = ExtResource("5_ga6fg")
-generator = SubResource("Resource_thwu4")
+generator = SubResource("Resource_sa83y")
 
-[node name="Hitbox1" type="Node3D" parent="AttackMachine/Aerial1" index="1" node_paths=PackedStringArray("inflictor")]
+[node name="Inflictor2" type="Area3D" parent="AttackMachine/Grounded2" index="2"]
+collision_layer = 32
+collision_mask = 16
+script = ExtResource("5_ga6fg")
+generator = SubResource("Resource_6jr2v")
+
+[node name="Hitbox1" type="Node3D" parent="AttackMachine/Grounded2" index="3" node_paths=PackedStringArray("inflictor")]
+script = ExtResource("14_wicsw")
+inflictor = NodePath("../Inflictor1")
+delay = 0.18
+duration = 0.09
+
+[node name="Collision" type="CollisionShape3D" parent="AttackMachine/Grounded2/Hitbox1" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19907, 2.60947, 0)
+shape = SubResource("SphereShape3D_cxdh1")
+
+[node name="Hitbox2" type="Node3D" parent="AttackMachine/Grounded2" index="4" node_paths=PackedStringArray("inflictor")]
+script = ExtResource("14_wicsw")
+inflictor = NodePath("../Inflictor2")
+delay = 0.27
+duration = 0.18
+
+[node name="Collision" type="CollisionShape3D" parent="AttackMachine/Grounded2/Hitbox2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.75, 0)
+shape = SubResource("SphereShape3D_b43to")
+
+[node name="Grounded3" type="Node3D" parent="AttackMachine" index="2" node_paths=PackedStringArray("next_in_combo", "combo_timer")]
+visible = false
+script = ExtResource("12_h8hr5")
+next_in_combo = [NodePath("../Grounded4")]
+combo_timer = NodePath("Combo")
+
+[node name="Combo" type="Timer" parent="AttackMachine/Grounded3" index="0"]
+wait_time = 2.0
+one_shot = true
+
+[node name="Inflictor" type="Area3D" parent="AttackMachine/Grounded3" index="1"]
+collision_layer = 32
+collision_mask = 16
+script = ExtResource("5_ga6fg")
+generator = SubResource("Resource_db75h")
+
+[node name="Hitbox1" type="Node3D" parent="AttackMachine/Grounded3" index="2" node_paths=PackedStringArray("inflictor")]
+script = ExtResource("14_wicsw")
+inflictor = NodePath("../Inflictor")
+delay = 0.48
+duration = 0.16
+
+[node name="Collision" type="CollisionShape3D" parent="AttackMachine/Grounded3/Hitbox1" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+shape = SubResource("SphereShape3D_b43to")
+
+[node name="Grounded4" type="Node3D" parent="AttackMachine" index="3"]
+visible = false
+script = ExtResource("12_h8hr5")
+
+[node name="Inflictor" type="Area3D" parent="AttackMachine/Grounded4" index="0"]
+collision_layer = 32
+collision_mask = 16
+script = ExtResource("5_ga6fg")
+generator = SubResource("Resource_db75h")
+
+[node name="Hitbox1" type="Node3D" parent="AttackMachine/Grounded4" index="1" node_paths=PackedStringArray("inflictor")]
+script = ExtResource("14_wicsw")
+inflictor = NodePath("../Inflictor")
+duration = 0.2
+
+[node name="Collision" type="CollisionShape3D" parent="AttackMachine/Grounded4/Hitbox1" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.5, 0)
+shape = SubResource("SphereShape3D_b43to")
+
+[node name="Aerial1" type="Node3D" parent="AttackMachine" index="4" node_paths=PackedStringArray("next_in_combo", "combo_timer")]
+visible = false
+script = ExtResource("12_h8hr5")
+next_in_combo = [NodePath("../Aerial2")]
+combo_timer = NodePath("Combo")
+
+[node name="Combo" type="Timer" parent="AttackMachine/Aerial1" index="0"]
+wait_time = 2.0
+one_shot = true
+
+[node name="Inflictor" type="Area3D" parent="AttackMachine/Aerial1" index="1"]
+collision_layer = 32
+collision_mask = 16
+script = ExtResource("5_ga6fg")
+generator = SubResource("Resource_erb7i")
+
+[node name="Hitbox1" type="Node3D" parent="AttackMachine/Aerial1" index="2" node_paths=PackedStringArray("inflictor")]
 script = ExtResource("14_wicsw")
 inflictor = NodePath("../Inflictor")
 delay = 0.18
 duration = 0.15
 
 [node name="Collision" type="CollisionShape3D" parent="AttackMachine/Aerial1/Hitbox1" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.75, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1, 0)
 shape = SubResource("SphereShape3D_b43to")
 
-[node name="Lift" type="Node3D" parent="AttackMachine/Aerial1" index="2" node_paths=PackedStringArray("character", "inflictor")]
+[node name="Lift" type="Node3D" parent="AttackMachine/Aerial1" index="3" node_paths=PackedStringArray("character", "inflictor")]
+script = ExtResource("15_7khi3")
+character = NodePath("../../..")
+inflictor = NodePath("../Inflictor")
+duration = 0.42
+
+[node name="Aerial2" type="Node3D" parent="AttackMachine" index="5"]
+script = ExtResource("12_h8hr5")
+
+[node name="Inflictor" type="Area3D" parent="AttackMachine/Aerial2" index="0"]
+collision_layer = 32
+collision_mask = 16
+script = ExtResource("5_ga6fg")
+generator = SubResource("Resource_erb7i")
+
+[node name="Hitbox1" type="Node3D" parent="AttackMachine/Aerial2" index="1" node_paths=PackedStringArray("inflictor")]
+script = ExtResource("14_wicsw")
+inflictor = NodePath("../Inflictor")
+delay = 0.15
+duration = 0.1
+
+[node name="Collision" type="CollisionShape3D" parent="AttackMachine/Aerial2/Hitbox1" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1, 0)
+shape = SubResource("SphereShape3D_56i4n")
+
+[node name="Lift" type="Node3D" parent="AttackMachine/Aerial2" index="2" node_paths=PackedStringArray("character", "inflictor")]
+script = ExtResource("15_7khi3")
+character = NodePath("../../..")
+inflictor = NodePath("../Inflictor")
+duration = 0.42
+
+[node name="Uppercut" type="Node3D" parent="AttackMachine" index="6"]
+script = ExtResource("12_h8hr5")
+
+[node name="Inflictor" type="Area3D" parent="AttackMachine/Uppercut" index="0"]
+collision_layer = 32
+collision_mask = 16
+script = ExtResource("5_ga6fg")
+generator = SubResource("Resource_okun4")
+
+[node name="Hitbox1" type="Node3D" parent="AttackMachine/Uppercut" index="1" node_paths=PackedStringArray("inflictor")]
+script = ExtResource("14_wicsw")
+inflictor = NodePath("../Inflictor")
+delay = 0.16
+duration = 0.16
+
+[node name="Collision" type="CollisionShape3D" parent="AttackMachine/Uppercut/Hitbox1" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 0)
+shape = SubResource("CylinderShape3D_olinu")
+
+[node name="Lift" type="Node3D" parent="AttackMachine/Uppercut" index="2" node_paths=PackedStringArray("character", "inflictor")]
 script = ExtResource("15_7khi3")
 character = NodePath("../../..")
 inflictor = NodePath("../Inflictor")

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://do1okxwem3dsq"
-path.s3tc="res://.godot/imported/player_attack_1.png-2b9cb9e0d2905289b172d5f1a4748ec5.s3tc.ctex"
+path.s3tc="res://.godot/imported/grounded_3.png-1d0c7c55bf2e416b10d039db52f9e2a2.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/graphics/entities/player/player_attack_1.png"
-dest_files=["res://.godot/imported/player_attack_1.png-2b9cb9e0d2905289b172d5f1a4748ec5.s3tc.ctex"]
+source_file="res://assets/graphics/entities/player/attack/grounded_3.png"
+dest_files=["res://.godot/imported/grounded_3.png-1d0c7c55bf2e416b10d039db52f9e2a2.s3tc.ctex"]
 
 [params]
 

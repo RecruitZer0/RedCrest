@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxs2m1wr0oro4"
-path.s3tc="res://.godot/imported/player_sheet.png-fefcd285d049591d5270405c758f6814.s3tc.ctex"
+uid="uid://whnfm0ylvdm3"
+path.s3tc="res://.godot/imported/uppercut.png-171b121514c95236079815db84f91d65.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/graphics/entities/player/player_sheet.png"
-dest_files=["res://.godot/imported/player_sheet.png-fefcd285d049591d5270405c758f6814.s3tc.ctex"]
+source_file="res://assets/graphics/entities/player/attack/uppercut.png"
+dest_files=["res://.godot/imported/uppercut.png-171b121514c95236079815db84f91d65.s3tc.ctex"]
 
 [params]
 

@@ -32,9 +32,17 @@ func _trigger_end() -> void:
 func flip(axis: int) -> void:
 	for h in _hitboxes:
 		h.position[axis] *= -1
+	if self == get_parent().get_children().filter(_has_the_same_inflictor)[0]:
+		inflictor.generator.knockback_direction[axis] *= -1
 
 
 func _get_configuration_warnings() -> PackedStringArray:
 	if not inflictor:
 		return ["Inflictor must be defined."]
 	return []
+
+func _has_the_same_inflictor(node: Node) -> bool:
+	if node.get("inflictor"):
+		return node.inflictor == inflictor
+	else:
+		return false

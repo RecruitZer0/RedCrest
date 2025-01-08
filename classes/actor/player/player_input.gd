@@ -44,4 +44,7 @@ func _attacking() -> void:
 		if player.is_on_floor():
 			player.attack_machine.make_attack(player.attack_machine.by_name("Grounded1"))
 		else:
-			player.attack_machine.make_attack(player.attack_machine.by_name("Aerial1"))
+			if player.velocity.y > 0:
+				player.attack_machine.make_attack(player.attack_machine.by_name("Uppercut"))
+			else:
+				player.attack_machine.make_attack(player.attack_machine.by_name("Aerial1"))

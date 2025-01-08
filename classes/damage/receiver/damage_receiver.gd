@@ -20,7 +20,7 @@ func receive_damage(damage: Damage) -> void:
 		if damage.knockback_direction:
 			owner.velocity_add = damage.knockback_direction * damage.knockback_force
 		else:
-			owner.velocity_add = (damage.inflictor.global_position.direction_to(owner.global_position) + Vector3.UP).normalized() * damage.knockback_force
+			owner.velocity_add = (damage.inflictor.global_position.direction_to(global_position) + Vector3.UP).normalized() * damage.knockback_force
 	if damage.knockback_cooldown_override > 0:
 		knockback_cooldown.start(damage.knockback_cooldown_override)
 	else:
