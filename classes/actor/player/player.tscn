@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://stp30remop0a"]
+[gd_scene load_steps=85 format=3 uid="uid://stp30remop0a"]
 
 [ext_resource type="PackedScene" uid="uid://bunkecwn6k2u6" path="res://classes/actor/actor.tscn" id="1_ge21v"]
 [ext_resource type="Script" path="res://classes/actor/player/player.gd" id="1_luush"]
@@ -926,7 +926,7 @@ script = ExtResource("14_0kunq")
 min_damage = 6
 max_damage = 12
 damage_cooldown = 0.2
-knockback_force = 8.5
+knockback_force = 6.0
 knockback_direction = Vector3(0, 0, 0)
 knockback_cooldown_override = 0.0
 knockback_ignore_cooldown = false
@@ -942,6 +942,18 @@ min_damage = 5
 max_damage = 10
 damage_cooldown = 0.2
 knockback_force = 5.0
+knockback_direction = Vector3(0, 0, 0)
+knockback_cooldown_override = 0.0
+knockback_ignore_cooldown = false
+crit_chance = 0.1
+crit_multiplier = 2.0
+
+[sub_resource type="Resource" id="Resource_dp80g"]
+script = ExtResource("14_0kunq")
+min_damage = 5
+max_damage = 10
+damage_cooldown = 0.2
+knockback_force = 8.0
 knockback_direction = Vector3(0, 0, 0)
 knockback_cooldown_override = 0.0
 knockback_ignore_cooldown = false
@@ -968,8 +980,8 @@ script = ExtResource("14_0kunq")
 min_damage = 5
 max_damage = 10
 damage_cooldown = 0.3
-knockback_force = 5.0
-knockback_direction = Vector3(0, 0, 0)
+knockback_force = 7.0
+knockback_direction = Vector3(0.5, 1, 0)
 knockback_cooldown_override = 0.0
 knockback_ignore_cooldown = false
 crit_chance = 0.1
@@ -1126,7 +1138,7 @@ script = ExtResource("12_h8hr5")
 collision_layer = 32
 collision_mask = 16
 script = ExtResource("5_ga6fg")
-generator = SubResource("Resource_db75h")
+generator = SubResource("Resource_dp80g")
 
 [node name="Hitbox1" type="Node3D" parent="AttackMachine/Grounded4" index="1" node_paths=PackedStringArray("inflictor")]
 script = ExtResource("14_wicsw")
@@ -1224,7 +1236,7 @@ shape = SubResource("SphereShape3D_56i4n")
 script = ExtResource("15_7khi3")
 character = NodePath("../../..")
 inflictor = NodePath("../Inflictor")
-lift_force = 4.0
+lift_force = 0.0
 duration = 0.8
 
 [node name="Uppercut" type="Node3D" parent="AttackMachine" index="7"]
