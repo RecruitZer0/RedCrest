@@ -39,6 +39,30 @@ var velocity_add: Vector3
 func is_on_screen() -> bool:
 	return visible_on_screen.is_on_screen()
 
+static func get_by_tags(check_tags: Array[Tags], restrictive := false) -> Array[Actor]:
+	var raw_actors: Array[Node] = Engine.get_main_loop().get_nodes_in_group("Actor")
+	var actors: Array[Actor]
+	for node in raw_actors:
+		if node is Actor:
+			actors.append(node)
+	
+	if restrictive:
+		return actors.filter(
+			func(a):
+				for check in check_tags:
+					if not a.tags.has(check):
+						return false
+				return true
+				)
+	else:
+		return actors.filter(
+			func(a):
+				for check in check_tags:
+					if a.tags.has(check):
+						return true
+				return false
+				)
+
 
 func _ready() -> void:
 	animation_tree.active = true
