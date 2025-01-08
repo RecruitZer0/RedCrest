@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://0gpajxb5vkeo"]
+[gd_scene load_steps=4 format=3 uid="uid://0gpajxb5vkeo"]
 
 [ext_resource type="PackedScene" uid="uid://b75ue0xtdhf4h" path="res://scenes/test.tscn" id="1_ttsxg"]
 [ext_resource type="PackedScene" uid="uid://stp30remop0a" path="res://classes/actor/player/player.tscn" id="2_v0t7p"]
+[ext_resource type="Script" path="res://_editor_stuff/_debug_nodes/switch_cams.gd" id="3_q7hyn"]
 
 [node name="Main" type="Node"]
 
@@ -20,3 +21,12 @@ size = 50.0
 
 [node name="Player" parent="." instance=ExtResource("2_v0t7p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10628, 3.81063, 0.37693)
+
+[node name="SwitchCams" type="Control" parent="." node_paths=PackedStringArray("cameras")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_q7hyn")
+keys = Array[int]([49, 50])
+cameras = [NodePath("../TestCamera1"), NodePath("../TestCamera2")]
