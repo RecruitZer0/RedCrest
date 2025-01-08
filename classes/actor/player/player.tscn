@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://stp30remop0a"]
+[gd_scene load_steps=84 format=3 uid="uid://stp30remop0a"]
 
 [ext_resource type="PackedScene" uid="uid://bunkecwn6k2u6" path="res://classes/actor/actor.tscn" id="1_ge21v"]
 [ext_resource type="Script" path="res://classes/actor/player/player.gd" id="1_luush"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://classes/attack/attack.gd" id="12_h8hr5"]
 [ext_resource type="Texture2D" uid="uid://dq6jpto77fv2" path="res://assets/graphics/entities/player/attack/aerial_2.png" id="13_i48yv"]
 [ext_resource type="Script" path="res://classes/damage/generator/damage_generator.gd" id="14_0kunq"]
+[ext_resource type="Texture2D" uid="uid://c30nlxeesitg7" path="res://assets/graphics/entities/player/attack/aerial_3.png" id="14_kjren"]
 [ext_resource type="Script" path="res://classes/attack/action/hitbox/action_hitbox.gd" id="14_wicsw"]
 [ext_resource type="Script" path="res://classes/attack/action/lift/action_lift.gd" id="15_7khi3"]
 
@@ -661,11 +662,65 @@ tracks/3/keys = {
 "values": [Vector2(24, 206)]
 }
 
+[sub_resource type="Animation" id="Animation_o71wj"]
+resource_name = "attack_aerial_3"
+length = 0.8
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("14_kjren")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 164)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eqaqw"]
 _data = {
 "RESET": SubResource("Animation_exc2i"),
 "attack_aerial_1": SubResource("Animation_xt5h4"),
 "attack_aerial_2": SubResource("Animation_d8gk6"),
+"attack_aerial_3": SubResource("Animation_o71wj"),
 "attack_grounded_1": SubResource("Animation_gniih"),
 "attack_grounded_2": SubResource("Animation_wkeoh"),
 "attack_grounded_3": SubResource("Animation_q65d3"),
@@ -682,6 +737,9 @@ animation = &"attack_aerial_1"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_de5m4"]
 animation = &"attack_aerial_2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2xxr5"]
+animation = &"attack_aerial_3"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pgjtx"]
 animation = &"attack_grounded_1"
@@ -730,6 +788,10 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ymiwe"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_dibl6"]
 states/End/position = Vector2(1053.33, 85.481)
 states/Start/position = Vector2(10.6667, 100.444)
@@ -737,6 +799,8 @@ states/attack_aerial_1/node = SubResource("AnimationNodeAnimation_qirla")
 states/attack_aerial_1/position = Vector2(243.333, 156.667)
 states/attack_aerial_2/node = SubResource("AnimationNodeAnimation_de5m4")
 states/attack_aerial_2/position = Vector2(435.667, 157.222)
+states/attack_aerial_3/node = SubResource("AnimationNodeAnimation_2xxr5")
+states/attack_aerial_3/position = Vector2(613, 157.453)
 states/attack_grounded_1/node = SubResource("AnimationNodeAnimation_pgjtx")
 states/attack_grounded_1/position = Vector2(136.667, -18)
 states/attack_grounded_2/node = SubResource("AnimationNodeAnimation_t31es")
@@ -747,7 +811,7 @@ states/attack_grounded_4/node = SubResource("AnimationNodeAnimation_voslg")
 states/attack_grounded_4/position = Vector2(812.333, -18.1111)
 states/attack_uppercut/node = SubResource("AnimationNodeAnimation_sxsun")
 states/attack_uppercut/position = Vector2(243.778, 264.667)
-transitions = ["Start", "End", SubResource("AnimationNodeStateMachineTransition_ii2sw"), "attack_grounded_1", "End", SubResource("AnimationNodeStateMachineTransition_bdplq"), "attack_grounded_2", "End", SubResource("AnimationNodeStateMachineTransition_2d6ng"), "attack_grounded_3", "End", SubResource("AnimationNodeStateMachineTransition_fgpf0"), "attack_aerial_1", "End", SubResource("AnimationNodeStateMachineTransition_3sa8k"), "attack_uppercut", "End", SubResource("AnimationNodeStateMachineTransition_1i8o6"), "attack_grounded_4", "End", SubResource("AnimationNodeStateMachineTransition_c1mxu"), "attack_aerial_2", "End", SubResource("AnimationNodeStateMachineTransition_mt3hs")]
+transitions = ["Start", "End", SubResource("AnimationNodeStateMachineTransition_ii2sw"), "attack_grounded_1", "End", SubResource("AnimationNodeStateMachineTransition_bdplq"), "attack_grounded_2", "End", SubResource("AnimationNodeStateMachineTransition_2d6ng"), "attack_grounded_3", "End", SubResource("AnimationNodeStateMachineTransition_fgpf0"), "attack_aerial_1", "End", SubResource("AnimationNodeStateMachineTransition_3sa8k"), "attack_uppercut", "End", SubResource("AnimationNodeStateMachineTransition_1i8o6"), "attack_grounded_4", "End", SubResource("AnimationNodeStateMachineTransition_c1mxu"), "attack_aerial_2", "End", SubResource("AnimationNodeStateMachineTransition_mt3hs"), "attack_aerial_3", "End", SubResource("AnimationNodeStateMachineTransition_ymiwe")]
 graph_offset = Vector2(-87, 37)
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_mywfe"]
@@ -897,7 +961,19 @@ crit_chance = 0.1
 crit_multiplier = 2.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_56i4n"]
-radius = 1.5
+radius = 3.0
+
+[sub_resource type="Resource" id="Resource_ovlof"]
+script = ExtResource("14_0kunq")
+min_damage = 5
+max_damage = 10
+damage_cooldown = 0.3
+knockback_force = 5.0
+knockback_direction = Vector3(0, 0, 0)
+knockback_cooldown_override = 0.0
+knockback_ignore_cooldown = false
+crit_chance = 0.1
+crit_multiplier = 2.0
 
 [sub_resource type="Resource" id="Resource_okun4"]
 script = ExtResource("14_0kunq")
@@ -1093,16 +1169,22 @@ character = NodePath("../../..")
 inflictor = NodePath("../Inflictor")
 duration = 0.42
 
-[node name="Aerial2" type="Node3D" parent="AttackMachine" index="5"]
+[node name="Aerial2" type="Node3D" parent="AttackMachine" index="5" node_paths=PackedStringArray("next_in_combo", "combo_timer")]
 script = ExtResource("12_h8hr5")
+next_in_combo = [NodePath("../Aerial3")]
+combo_timer = NodePath("Combo")
 
-[node name="Inflictor" type="Area3D" parent="AttackMachine/Aerial2" index="0"]
+[node name="Combo" type="Timer" parent="AttackMachine/Aerial2" index="0"]
+wait_time = 2.0
+one_shot = true
+
+[node name="Inflictor" type="Area3D" parent="AttackMachine/Aerial2" index="1"]
 collision_layer = 32
 collision_mask = 16
 script = ExtResource("5_ga6fg")
 generator = SubResource("Resource_erb7i")
 
-[node name="Hitbox1" type="Node3D" parent="AttackMachine/Aerial2" index="1" node_paths=PackedStringArray("inflictor")]
+[node name="Hitbox1" type="Node3D" parent="AttackMachine/Aerial2" index="2" node_paths=PackedStringArray("inflictor")]
 script = ExtResource("14_wicsw")
 inflictor = NodePath("../Inflictor")
 delay = 0.15
@@ -1112,13 +1194,40 @@ duration = 0.1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1, 0)
 shape = SubResource("SphereShape3D_56i4n")
 
-[node name="Lift" type="Node3D" parent="AttackMachine/Aerial2" index="2" node_paths=PackedStringArray("character", "inflictor")]
+[node name="Lift" type="Node3D" parent="AttackMachine/Aerial2" index="3" node_paths=PackedStringArray("character", "inflictor")]
 script = ExtResource("15_7khi3")
 character = NodePath("../../..")
 inflictor = NodePath("../Inflictor")
-duration = 0.42
+lift_force = 6.0
+duration = 0.35
 
-[node name="Uppercut" type="Node3D" parent="AttackMachine" index="6"]
+[node name="Aerial3" type="Node3D" parent="AttackMachine" index="6"]
+script = ExtResource("12_h8hr5")
+
+[node name="Inflictor" type="Area3D" parent="AttackMachine/Aerial3" index="0"]
+collision_layer = 32
+collision_mask = 16
+script = ExtResource("5_ga6fg")
+generator = SubResource("Resource_ovlof")
+
+[node name="Hitbox1" type="Node3D" parent="AttackMachine/Aerial3" index="1" node_paths=PackedStringArray("inflictor")]
+script = ExtResource("14_wicsw")
+inflictor = NodePath("../Inflictor")
+delay = 0.05
+duration = 0.8
+
+[node name="Collision" type="CollisionShape3D" parent="AttackMachine/Aerial3/Hitbox1" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0)
+shape = SubResource("SphereShape3D_56i4n")
+
+[node name="Lift" type="Node3D" parent="AttackMachine/Aerial3" index="2" node_paths=PackedStringArray("character", "inflictor")]
+script = ExtResource("15_7khi3")
+character = NodePath("../../..")
+inflictor = NodePath("../Inflictor")
+lift_force = 4.0
+duration = 0.8
+
+[node name="Uppercut" type="Node3D" parent="AttackMachine" index="7"]
 script = ExtResource("12_h8hr5")
 
 [node name="Inflictor" type="Area3D" parent="AttackMachine/Uppercut" index="0"]
