@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b75ue0xtdhf4h"]
+[gd_scene load_steps=19 format=3 uid="uid://b75ue0xtdhf4h"]
 
 [ext_resource type="Texture2D" uid="uid://blvl0my17kkbj" path="res://assets/graphics/world/grass.png" id="1_4dvcf"]
 [ext_resource type="PackedScene" uid="uid://bunkecwn6k2u6" path="res://classes/actor/actor.tscn" id="3_xiaeb"]
@@ -49,6 +49,11 @@ height = 5.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_v1jbr"]
 size = Vector3(50, 2, 1)
+
+[sub_resource type="GDScript" id="GDScript_04r36"]
+resource_name = "Dummy"
+script/source = "extends Actor
+"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x4ssm"]
 radius = 1.0
@@ -143,6 +148,7 @@ skeleton = NodePath("../..")
 
 [node name="Dummy" parent="." instance=ExtResource("3_xiaeb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.14434, 3.31671, 0.357378)
+script = SubResource("GDScript_04r36")
 
 [node name="Collision" parent="Dummy" index="3"]
 shape = SubResource("CapsuleShape3D_x4ssm")
@@ -152,6 +158,5 @@ shape = SubResource("SphereShape3D_1c1nv")
 
 [node name="PlaceholderGuy" parent="." instance=ExtResource("4_236mo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.921, 1, -4.263)
-jump_wall_distance = 3.0
 
 [editable path="Dummy"]

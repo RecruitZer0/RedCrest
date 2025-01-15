@@ -66,6 +66,9 @@ func _switch_to_attacker(damage: Damage) -> void:
 		targeting = damage.inflictor.owner
 
 func _handle_pathing() -> void:
+	if damage_receiver.is_stunned():
+		return
+	
 	if align_axis:
 		var align_byte := String.num_int64(align_axis, 2).pad_zeros(3)
 		var align_vector := Vector3.ZERO

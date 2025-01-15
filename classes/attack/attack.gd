@@ -21,11 +21,25 @@ func _ready() -> void:
 ## Triggers all the [AttackAction] children (see [method AttackAction.trigger]) after each respective [member AttackAction.delay], and starts the [member combo_timer]
 func play() -> void:
 	for action in _actions:
-		var delay_timer := get_tree().create_timer(action.delay, false, true)
-		delay_timer.timeout.connect(action.trigger)
+		action.trigger()
 	if combo_timer:
 		combo_timer.start()
 
+## Stops this attack and all its [AttackAction]s.
+func stop() -> void:
+	for action in _actions:
+		if not action.is_active():
+			action._delay_timer.stop()
+		else:
+			action._duration_timer.stop()
+			action._duration_timer.timeout.emit()
+
+## Returns whether the attack is active.
+func is_attacking() -> bool:
+	for action in _actions:
+		if action.is_active():
+			return true
+	return false
 
 
 func _register_children() -> void:

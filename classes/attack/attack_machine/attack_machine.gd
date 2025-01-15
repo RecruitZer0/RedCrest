@@ -40,6 +40,8 @@ var _flipping_update: bool
 func make_attack(attack: Attack, combo_order: PackedInt32Array = [0], ignore_combo := false, play_animation := true, override := false) -> void:
 	if is_attacking() and not override:
 		return
+	if override:
+		stop()
 	
 	if attack.next_in_combo and is_in_combo(attack) and not ignore_combo:
 		attack.combo_timer.stop()
@@ -49,10 +51,32 @@ func make_attack(attack: Attack, combo_order: PackedInt32Array = [0], ignore_com
 		return
 	attack.play()
 	if play_animation and attack.play_animation:
-		_playback.stop()
 		_playback.start("attack_%s" % attack.name.to_snake_case())
 	
 	attacked.emit(attack)
+
+## Interrupts the currently playing attack and returns it, if any.
+func stop() -> Attack:
+	var current := get_current_attack()
+	if not current:
+		return null
+	current.stop()
+	_playback.start("End")
+	animation_tree.set("parameters/%sBlend/blend_amount" % name, 0)
+	return current
+
+## Returns the attack that is being played, if any. Detects by [AttackAction]s.
+func get_current_attack() -> Attack:
+	for attack in get_children(): if attack is Attack:
+		if attack.is_attacking():
+			return attack
+	return null
+## Returns the attack that is being played, if any. Detects by [member animation_tree].
+func get_current_attack_animation() -> StringName:
+	if not is_attacking_animation():
+		return ""
+	return _playback.get_current_node()
+
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -83,12 +107,15 @@ func _process(_delta: float) -> void:
 	_blend_tree = animation_tree.tree_root
 	_playback = animation_tree.get("parameters/%s/playback" % name)
 	
-	animation_tree.set("parameters/%sBlend/blend_amount" % name, int(is_attacking()))
+	animation_tree.set("parameters/%sBlend/blend_amount" % name, int(is_attacking_animation()))
 	
 	_handle_flipping()
 
-## Returns [code]true[/code] if an attack animation is being played.
+## Returns [code]true[/code] if an attack action is being played.
 func is_attacking() -> bool:
+	return get_current_attack() != null
+## Returns [code]true[/code] if an attack animation is being played.
+func is_attacking_animation() -> bool:
 	return _playback.get_current_node() != "End"
 
 ## Returns [code]true[/code] if the defined attack is inside an active combo. It is recursive.

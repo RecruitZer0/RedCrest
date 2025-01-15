@@ -24,7 +24,7 @@ jump_wall_distance = 3.0
 jump_ground_distance = 2.0
 jump_ground_depth = 10.0
 max_speed = 6.0
-acceleration = 30.0
+acceleration = 80.0
 
 [node name="NavigationAgent" type="NavigationAgent3D" parent="." index="0"]
 simplify_path = true

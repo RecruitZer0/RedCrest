@@ -13,6 +13,9 @@ signal after_damaged(damage: Damage)
 ## If the damage text should be shown.
 @export var show_damage_text := true
 
+var _stun_timer := Timer.new()
+		
+
 ## Applies damage to this receiver.
 func receive_damage(damage: Damage) -> void:
 	before_damaged.emit(damage)
@@ -26,8 +29,21 @@ func receive_damage(damage: Damage) -> void:
 	else:
 		knockback_cooldown.start()
 	
+	stun(damage.stun_duration)
 	after_damaged.emit(damage)
 	_make_number(damage)
+
+func stun(duration: float) -> void:
+	if not _stun_timer.is_inside_tree():
+		add_child(_stun_timer)
+	if duration <= 0:
+		return
+	_stun_timer.one_shot = true
+	_stun_timer.start(duration)
+
+## Can be used in other scripts or animations to interact with hitstuns from this receiver.
+func is_stunned() -> bool:
+	return _stun_timer.time_left
 
 func _make_number(damage: Damage) -> void:
 	if not show_damage_text: return

@@ -25,15 +25,15 @@ func _physics_process(delta: float) -> void:
 	for area in _areas_in.keys():
 		_areas_in[area] = move_toward(_areas_in[area], 0, delta)
 		if _areas_in[area]: continue
-		_areas_in[area] = generator.damage_cooldown
-		area.receive_damage(generator.generate(self))
+		_areas_in[area] = generator.stun_duration
 		hit.emit(area)
+		area.receive_damage(generator.generate(self))
 
 func _area_entered(area: Area3D) -> void:
 	if area is DamageReceiver and (owner != area.owner):
-		_areas_in[area] = generator.damage_cooldown
-		area.receive_damage(generator.generate(self))
+		_areas_in[area] = generator.stun_duration
 		hit.emit(area)
+		area.receive_damage(generator.generate(self))
 
 func _area_exited(area: Area3D) -> void:
 	if area is DamageReceiver:

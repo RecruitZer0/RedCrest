@@ -7,6 +7,7 @@ class_name Damage extends Resource
 
 
 var damage: int
+var stun_duration: float
 var knockback_force: float
 var knockback_direction: Vector3
 var knockback_cooldown_override: float

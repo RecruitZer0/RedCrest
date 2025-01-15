@@ -20,7 +20,7 @@ enum Tags {
 
 @export_group("Movement")
 @export var max_speed := 8.0
-@export var acceleration := 40.0
+@export var acceleration := 100.0
 @export var gravity := 30.0
 @export var speed_multiplier := 1.0
 @export var should_move := true

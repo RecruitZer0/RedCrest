@@ -6,14 +6,8 @@ class_name AttackActionLift extends AttackAction
 ## The effect only happens while the Action is active.
 
 
-@export var character: CharacterBody3D : ## The character that will have its velocity overriden.
-	set(value):
-		character = value
-		update_configuration_warnings()
-@export var inflictor: DamageInflictor : ## The inflictor that will have its hit signal connected.
-	set(value):
-		inflictor = value
-		update_configuration_warnings()
+@export var character: CharacterBody3D ## The character that will have its velocity overriden.
+@export var inflictor: DamageInflictor ## The inflictor that will have its hit signal connected.
 @export var lift_direction := Vector3.UP : ## The direction that [member character] will be launched toward. Is automatically normalized in run-time, but not in editor.
 	set(value):
 		if Engine.is_editor_hint():

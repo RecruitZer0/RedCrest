@@ -5,7 +5,7 @@ class_name DamageGenerator extends Resource
 
 @export var min_damage: int ## The minimum damage to be randomized into the final damage (inclusive).
 @export var max_damage: int ## The maximum damage to be randomized into the final damage (inclusive).
-@export var damage_cooldown := 0.2 ## The time needed to do damage again.
+@export var stun_duration := 0.4 ## The time that the receiver will be stunned. This is also used as an internal cooldown to be able to do damage again.
 
 @export_group("Knockback", "knockback_")
 @export var knockback_force := 5.0 ## The strenght of the knockback applied to the victim.
@@ -27,7 +27,8 @@ func generate(inflictor: DamageInflictor) -> Damage:
 	if randf() < crit_chance:
 		resource.damage = ceili(resource.damage * crit_multiplier)
 		resource.is_crit = true
-		
+	
+	resource.stun_duration = stun_duration
 	resource.knockback_force = knockback_force
 	resource.knockback_direction = knockback_direction.normalized()
 	resource.knockback_cooldown_override = knockback_cooldown_override

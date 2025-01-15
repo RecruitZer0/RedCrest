@@ -11,7 +11,9 @@ func _physics_process(_delta: float) -> void:
 	disable_input = false
 
 func _process(_delta: float) -> void:
-	if player.attack_machine.is_attacking():
+	if player.attack_machine.is_attacking_animation():
+		disable_input = true
+	if player.damage_receiver.is_stunned():
 		disable_input = true
 
 
@@ -44,7 +46,7 @@ func _attacking() -> void:
 		if player.is_on_floor():
 			player.attack_machine.make_attack(player.attack_machine.by_name("Grounded1"))
 		else:
-			if player.velocity.y > 0:
+			if player.velocity.y > jump_force/2:
 				player.attack_machine.make_attack(player.attack_machine.by_name("Uppercut"))
 			else:
 				player.attack_machine.make_attack(player.attack_machine.by_name("Aerial1"))
