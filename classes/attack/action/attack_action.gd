@@ -1,6 +1,6 @@
 @icon("res://_editor_stuff/class_icons/attack_action.svg")
 class_name AttackAction extends Node3D
-## Abstract class for adding functionality to an [Attack]
+## Abstract class for adding functionality to an [Attack].
 ##
 ## Don't add this node directly to the SceneTree, it won't do anything.
 ##[br] Instead, extend this class and change the [code]_trigger_*[/code] functions

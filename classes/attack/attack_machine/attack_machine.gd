@@ -98,9 +98,12 @@ func _process(_delta: float) -> void:
 		if not sm.has_transition("Start", "End"):
 			sm.add_transition("Start", "End", trans)
 		for child in get_children():
-			if sm.has_transition("attack_%s" % child.name.to_snake_case(), "End"):
+			var attack := "attack_%s" % child.name.to_snake_case()
+			if not sm.has_node(attack):
 				continue
-			sm.add_transition("attack_%s" % child.name.to_snake_case(), "End", trans)
+			if sm.has_transition(attack, "End"):
+				continue
+			sm.add_transition(attack, "End", trans)
 		return
 	
 	

@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://bwtn56mj5ku5l"]
+
+[ext_resource type="PackedScene" uid="uid://bunkecwn6k2u6" path="res://classes/actor/actor.tscn" id="1_jv8u1"]
+[ext_resource type="Texture2D" uid="uid://b20i0eq1uamx2" path="res://icon.svg" id="2_4iglg"]
+[ext_resource type="Script" path="res://classes/damage/inflictor/damage_inflictor.gd" id="2_lqi6x"]
+[ext_resource type="Script" path="res://classes/damage/generator/damage_generator.gd" id="3_c8qdh"]
+
+[sub_resource type="GDScript" id="GDScript_arhtr"]
+resource_name = "test_projectile"
+script/source = "extends Actor
+
+@export var direction: Vector3
+
+@onready var damage_inflictor: DamageInflictor = $DamageInflictor
+
+func _physics_process(delta: float) -> void:
+	movement_dir = direction.normalized()
+	super(delta)
+
+func _attack_summon_trigger_start(ignored_node: Node) -> void:
+	if ignored_node is Actor:
+		damage_inflictor.ignored_receivers.append(ignored_node.damage_receiver)
+"
+
+[sub_resource type="Resource" id="Resource_smxiw"]
+script = ExtResource("3_c8qdh")
+min_damage = 15
+max_damage = 15
+stun_duration = 0.4
+knockback_force = 5.0
+knockback_direction = Vector3(0, 0, 0)
+knockback_cooldown_override = 0.0
+knockback_ignore_cooldown = false
+crit_chance = 0.1
+crit_multiplier = 2.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jjnaf"]
+radius = 1.0
+
+[node name="TestProjectile" instance=ExtResource("1_jv8u1")]
+collision_layer = 2
+script = SubResource("GDScript_arhtr")
+direction = Vector3(0, 0, 0)
+max_speed = 12.0
+acceleration = 1200.0
+gravity = 0.0
+can_fly = true
+shadow_radius = 0.6
+tags = Array[int]([1])
+
+[node name="DamageInflictor" type="Area3D" parent="." index="0"]
+collision_layer = 32
+collision_mask = 16
+script = ExtResource("2_lqi6x")
+generator = SubResource("Resource_smxiw")
+
+[node name="Collision" type="CollisionShape3D" parent="DamageInflictor" index="0"]
+shape = SubResource("SphereShape3D_jjnaf")
+
+[node name="Sprite" parent="." index="2"]
+texture = ExtResource("2_4iglg")
+
+[node name="Collision" parent="." index="4"]
+shape = SubResource("SphereShape3D_jjnaf")
+
+[node name="VisibleOnScreen" parent="." index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

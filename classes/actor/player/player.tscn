@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://stp30remop0a"]
+[gd_scene load_steps=90 format=3 uid="uid://stp30remop0a"]
 
 [ext_resource type="PackedScene" uid="uid://bunkecwn6k2u6" path="res://classes/actor/actor.tscn" id="1_ge21v"]
 [ext_resource type="Script" path="res://classes/actor/player/player.gd" id="1_luush"]
@@ -21,6 +21,8 @@
 [ext_resource type="Texture2D" uid="uid://c30nlxeesitg7" path="res://assets/graphics/entities/player/attack/aerial_3.png" id="14_kjren"]
 [ext_resource type="Script" path="res://classes/attack/action/hitbox/action_hitbox.gd" id="14_wicsw"]
 [ext_resource type="Script" path="res://classes/attack/action/lift/action_lift.gd" id="15_7khi3"]
+[ext_resource type="Script" path="res://classes/attack/action/summon/action_summon.gd" id="21_gmeki"]
+[ext_resource type="PackedScene" uid="uid://bwtn56mj5ku5l" path="res://classes/actor/player/weapons/test_projectile.tscn" id="22_q2tmf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ewbjm"]
 radius = 1.0
@@ -448,6 +450,59 @@ tracks/3/keys = {
 "values": [Vector2(192, 195)]
 }
 
+[sub_resource type="Animation" id="Animation_5frks"]
+resource_name = "attack_projectile_test"
+length = 0.450005
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_osfek")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 8]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 192)]
+}
+
 [sub_resource type="Animation" id="Animation_08qgl"]
 resource_name = "attack_uppercut"
 length = 0.48
@@ -725,6 +780,7 @@ _data = {
 "attack_grounded_2": SubResource("Animation_wkeoh"),
 "attack_grounded_3": SubResource("Animation_q65d3"),
 "attack_grounded_4": SubResource("Animation_w0sg0"),
+"attack_projectile_test": SubResource("Animation_5frks"),
 "attack_uppercut": SubResource("Animation_08qgl"),
 "fall": SubResource("Animation_2skio"),
 "idle": SubResource("Animation_fbg6s"),
@@ -752,6 +808,9 @@ animation = &"attack_grounded_3"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_voslg"]
 animation = &"attack_grounded_4"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2b16c"]
+animation = &"attack_projectile_test"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sxsun"]
 animation = &"attack_uppercut"
@@ -792,6 +851,10 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s7l8o"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_dibl6"]
 states/End/position = Vector2(1053.33, 85.481)
 states/Start/position = Vector2(10.6667, 100.444)
@@ -809,10 +872,12 @@ states/attack_grounded_3/node = SubResource("AnimationNodeAnimation_yhdnt")
 states/attack_grounded_3/position = Vector2(582, -18.5926)
 states/attack_grounded_4/node = SubResource("AnimationNodeAnimation_voslg")
 states/attack_grounded_4/position = Vector2(812.333, -18.1111)
+states/attack_projectile_test/node = SubResource("AnimationNodeAnimation_2b16c")
+states/attack_projectile_test/position = Vector2(242.26, 356.667)
 states/attack_uppercut/node = SubResource("AnimationNodeAnimation_sxsun")
 states/attack_uppercut/position = Vector2(243.778, 264.667)
-transitions = ["Start", "End", SubResource("AnimationNodeStateMachineTransition_ii2sw"), "attack_grounded_1", "End", SubResource("AnimationNodeStateMachineTransition_bdplq"), "attack_grounded_2", "End", SubResource("AnimationNodeStateMachineTransition_2d6ng"), "attack_grounded_3", "End", SubResource("AnimationNodeStateMachineTransition_fgpf0"), "attack_aerial_1", "End", SubResource("AnimationNodeStateMachineTransition_3sa8k"), "attack_uppercut", "End", SubResource("AnimationNodeStateMachineTransition_1i8o6"), "attack_grounded_4", "End", SubResource("AnimationNodeStateMachineTransition_c1mxu"), "attack_aerial_2", "End", SubResource("AnimationNodeStateMachineTransition_mt3hs"), "attack_aerial_3", "End", SubResource("AnimationNodeStateMachineTransition_ymiwe")]
-graph_offset = Vector2(-87, 37)
+transitions = ["Start", "End", SubResource("AnimationNodeStateMachineTransition_ii2sw"), "attack_grounded_1", "End", SubResource("AnimationNodeStateMachineTransition_bdplq"), "attack_grounded_2", "End", SubResource("AnimationNodeStateMachineTransition_2d6ng"), "attack_grounded_3", "End", SubResource("AnimationNodeStateMachineTransition_fgpf0"), "attack_aerial_1", "End", SubResource("AnimationNodeStateMachineTransition_3sa8k"), "attack_uppercut", "End", SubResource("AnimationNodeStateMachineTransition_1i8o6"), "attack_grounded_4", "End", SubResource("AnimationNodeStateMachineTransition_c1mxu"), "attack_aerial_2", "End", SubResource("AnimationNodeStateMachineTransition_mt3hs"), "attack_aerial_3", "End", SubResource("AnimationNodeStateMachineTransition_ymiwe"), "attack_projectile_test", "End", SubResource("AnimationNodeStateMachineTransition_s7l8o")]
+graph_offset = Vector2(-157, -12)
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_mywfe"]
 
@@ -884,7 +949,7 @@ transitions = ["idle", "run", SubResource("AnimationNodeStateMachineTransition_5
 graph_offset = Vector2(-245.75, 150.237)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_aqyth"]
-graph_offset = Vector2(-552.727, 330.667)
+graph_offset = Vector2(-472, 324)
 nodes/AttackMachine/node = SubResource("AnimationNodeStateMachine_dibl6")
 nodes/AttackMachine/position = Vector2(-240, 346.667)
 nodes/AttackMachineBlend/node = SubResource("AnimationNodeBlend2_mywfe")
@@ -952,7 +1017,7 @@ crit_multiplier = 2.0
 script = ExtResource("14_0kunq")
 min_damage = 5
 max_damage = 10
-stun_duration = 5.0
+stun_duration = 0.4
 knockback_force = 8.0
 knockback_direction = Vector3(0, 0, 0)
 knockback_cooldown_override = 0.0
@@ -1211,7 +1276,6 @@ script = ExtResource("15_7khi3")
 character = NodePath("../../..")
 inflictor = NodePath("../Inflictor")
 lift_force = 6.0
-delay = 0.0
 duration = 0.35
 
 [node name="Aerial3" type="Node3D" parent="AttackMachine" index="6"]
@@ -1238,7 +1302,6 @@ script = ExtResource("15_7khi3")
 character = NodePath("../../..")
 inflictor = NodePath("../Inflictor")
 lift_force = 0.0
-delay = 0.0
 duration = 0.8
 
 [node name="Uppercut" type="Node3D" parent="AttackMachine" index="7"]
@@ -1264,8 +1327,22 @@ shape = SubResource("CylinderShape3D_olinu")
 script = ExtResource("15_7khi3")
 character = NodePath("../../..")
 inflictor = NodePath("../Inflictor")
-delay = 0.0
 duration = 0.42
+
+[node name="ProjectileTest" type="Node3D" parent="AttackMachine" index="8"]
+script = ExtResource("12_h8hr5")
+
+[node name="Projectile" type="Node3D" parent="AttackMachine/ProjectileTest" index="0" node_paths=PackedStringArray("summon_target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4401, 2.4326, 0)
+script = ExtResource("21_gmeki")
+summon_scene = ExtResource("22_q2tmf")
+summon_target = NodePath("../../..")
+transfer_variables = {
+"direction+flip": Vector3(1, 0, 0)
+}
+transfer_start_arguments = {
+"0": NodePath("../../..")
+}
 
 [node name="Input" type="Node" parent="." index="7"]
 script = ExtResource("2_dc65j")

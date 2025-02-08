@@ -12,12 +12,18 @@ signal after_damaged(damage: Damage)
 @export var knockback_cooldown: Timer
 ## If the damage text should be shown.
 @export var show_damage_text := true
+##
+@export var ignored_inflictors: Array[DamageInflictor] = []
 
 var _stun_timer := Timer.new()
 		
 
 ## Applies damage to this receiver.
 func receive_damage(damage: Damage) -> void:
+	if damage.inflictor:
+		if damage.inflictor in ignored_inflictors:
+			return
+	
 	before_damaged.emit(damage)
 	if knockback_cooldown.is_stopped() and owner is Actor:
 		if damage.knockback_direction:

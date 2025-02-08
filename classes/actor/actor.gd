@@ -5,6 +5,7 @@ class_name Actor extends CharacterBody3D
 
 enum Tags {
 	PLAYER,
+	PROJECTILE,
 	SOLDIER,
 	NEUTRAL,
 }
@@ -12,6 +13,7 @@ enum Tags {
 @onready var sprite: Sprite3D = $Sprite
 @onready var shadow: RayCast3D = $Shadow
 @onready var shadow_sprite: Sprite3D = $Shadow/ShadowSprite
+@onready var collision: CollisionShape3D = $Collision
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var damage_receiver: DamageReceiver = $DamageReceiver
@@ -39,29 +41,28 @@ var velocity_add: Vector3
 func is_on_screen() -> bool:
 	return visible_on_screen.is_on_screen()
 
+## Returns an Array of all Actors that either:
+##[br] - Have at least one of the tags in [param check_tags], if [param restrictive] is false. (default)
+##[br] - Have all of the tags in [param check_tags], if [param restrictive] is true.
 static func get_by_tags(check_tags: Array[Tags], restrictive := false) -> Array[Actor]:
 	var raw_actors: Array[Node] = Engine.get_main_loop().get_nodes_in_group("Actor")
 	var actors: Array[Actor]
-	for node in raw_actors:
-		if node is Actor:
+	for node in raw_actors: if node is Actor:
+		if node.has_tags(check_tags, restrictive):
 			actors.append(node)
-	
+	return actors
+
+func has_tags(check_tags: Array[Tags], restrictive := false) -> bool:
 	if restrictive:
-		return actors.filter(
-			func(a):
-				for check in check_tags:
-					if not a.tags.has(check):
-						return false
-				return true
-				)
-	else:
-		return actors.filter(
-			func(a):
-				for check in check_tags:
-					if a.tags.has(check):
-						return true
+		for check in check_tags:
+			if not tags.has(check):
 				return false
-				)
+		return true
+	else:
+		for check in check_tags:
+			if tags.has(check):
+				return true
+		return false
 
 
 func _ready() -> void:

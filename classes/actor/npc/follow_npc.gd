@@ -9,6 +9,7 @@ class_name FollowNPC extends Actor
 
 @export_group("Follow")
 @export var follow_targets: Array[Actor.Tags] = [] ## An Array of [enum Actor.Tags] that the NPC should follow and target its attacks.
+@export var follow_blacklist: Array[Actor.Tags] = [Actor.Tags.PROJECTILE] ## An Array of [enum Actor.Tags] that the NPC will not target at all. Even if an Actor with one of these tags attacks this NPC with [member switch_to_attacker] enabled. The default value includes PROJECTILE tag.
 @export var minimum_distance: float = 2 ## A minimum distance the NPC will try to maintain when following the target.
 @export var automatically_target := true ## If true, the NPC will be constantly trying to target whichever valid target is the closest when it doesn't have one already (see [method is_valid_target]). Note that the NPC will only do that when it is on screen.
 @export var switch_to_attacker := true ## If true, the NPC will switch its target to whoever last attacked them.
@@ -46,11 +47,10 @@ func find_nearest_target() -> Actor:
 func is_valid_target(actor: Actor) -> bool:
 	if not actor.is_on_screen():
 		return false
+	if actor.has_tags(follow_blacklist):
+		return false
 	
-	for my_tag in follow_targets:
-		if actor.tags.has(my_tag):
-			return true
-	return false
+	return actor.has_tags(follow_targets)
 
 ## Returns if both the [NavigationServer] has started completely and [NavigationAgent3D] has not reached it's destination.
 func is_ai_ready() -> bool:
@@ -63,6 +63,8 @@ func is_ai_ready() -> bool:
 func _switch_to_attacker(damage: Damage) -> void:
 	if not switch_to_attacker: return
 	if damage.inflictor.owner is Actor:
+		if damage.inflictor.owner.has_tags(follow_blacklist):
+			return
 		targeting = damage.inflictor.owner
 
 func _handle_pathing() -> void:

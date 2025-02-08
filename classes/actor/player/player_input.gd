@@ -50,3 +50,5 @@ func _attacking() -> void:
 				player.attack_machine.make_attack(player.attack_machine.by_name("Uppercut"))
 			else:
 				player.attack_machine.make_attack(player.attack_machine.by_name("Aerial1"))
+	if Input.is_action_pressed("ui_focus_next"):
+		player.attack_machine.make_attack(player.attack_machine.by_name("ProjectileTest"))
