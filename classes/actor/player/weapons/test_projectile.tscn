@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://bwtn56mj5ku5l"]
 
 [ext_resource type="PackedScene" uid="uid://bunkecwn6k2u6" path="res://classes/actor/actor.tscn" id="1_jv8u1"]
-[ext_resource type="Texture2D" uid="uid://b20i0eq1uamx2" path="res://icon.svg" id="2_4iglg"]
 [ext_resource type="Script" path="res://classes/damage/inflictor/damage_inflictor.gd" id="2_lqi6x"]
 [ext_resource type="Script" path="res://classes/damage/generator/damage_generator.gd" id="3_c8qdh"]
+[ext_resource type="Texture2D" uid="uid://bb6j5yqtyhmhx" path="res://assets/graphics/entities/test_projectile/test_projectile.png" id="4_swiop"]
 
 [sub_resource type="GDScript" id="GDScript_arhtr"]
 resource_name = "test_projectile"
@@ -14,6 +14,9 @@ script/source = "extends Actor
 @onready var damage_inflictor: DamageInflictor = $DamageInflictor
 
 func _physics_process(delta: float) -> void:
+	sprite.flip_h = direction.x < 0
+	direction.y -= 0.01
+	rotation.z += 15 * delta
 	movement_dir = direction.normalized()
 	super(delta)
 
@@ -41,8 +44,8 @@ radius = 1.0
 collision_layer = 2
 script = SubResource("GDScript_arhtr")
 direction = Vector3(0, 0, 0)
-max_speed = 12.0
-acceleration = 1200.0
+max_speed = 60.0
+acceleration = 6000.0
 gravity = 0.0
 can_fly = true
 shadow_radius = 0.6
@@ -58,10 +61,12 @@ generator = SubResource("Resource_smxiw")
 shape = SubResource("SphereShape3D_jjnaf")
 
 [node name="Sprite" parent="." index="2"]
-texture = ExtResource("2_4iglg")
+texture = ExtResource("4_swiop")
 
 [node name="Collision" parent="." index="4"]
 shape = SubResource("SphereShape3D_jjnaf")
 
 [node name="VisibleOnScreen" parent="." index="8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[connection signal="hit" from="DamageInflictor" to="." method="queue_free" unbinds=1]
