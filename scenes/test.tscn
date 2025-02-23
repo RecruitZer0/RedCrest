@@ -1,7 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://b75ue0xtdhf4h"]
+[gd_scene load_steps=25 format=3 uid="uid://b75ue0xtdhf4h"]
 
 [ext_resource type="Texture2D" uid="uid://blvl0my17kkbj" path="res://assets/graphics/world/textures/grass.png" id="1_4dvcf"]
+[ext_resource type="PackedScene" uid="uid://cm61rysa0ld8q" path="res://classes/follow_camera/follow_camera.tscn" id="1_cnvi8"]
 [ext_resource type="Texture2D" uid="uid://dwnwjepewrq56" path="res://assets/graphics/world/textures/bush.png" id="2_bwgxk"]
+[ext_resource type="PackedScene" uid="uid://stp30remop0a" path="res://classes/actor/player/player.tscn" id="2_e3vgr"]
+[ext_resource type="Script" path="res://_editor_stuff/_debug_nodes/switch_cams.gd" id="3_dr8g8"]
 [ext_resource type="PackedScene" uid="uid://bunkecwn6k2u6" path="res://classes/actor/actor.tscn" id="3_xiaeb"]
 [ext_resource type="PackedScene" uid="uid://upxfjqwb6nvn" path="res://classes/actor/npc/placeholder_guy/placeholder_guy.tscn" id="4_236mo"]
 
@@ -84,6 +87,28 @@ radius = 1.5
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bgivc")
+
+[node name="Player" parent="." instance=ExtResource("2_e3vgr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10628, 3.81063, 0.37693)
+
+[node name="FollowCamera" parent="." instance=ExtResource("1_cnvi8")]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0)
+current = true
+follow_tags = Array[int]([0])
+
+[node name="TestCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 27.995, 18.365, 16.29)
+projection = 1
+size = 50.0
+
+[node name="SwitchCams" type="Control" parent="." node_paths=PackedStringArray("cameras")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_dr8g8")
+keys = Array[int]([49, 50])
+cameras = [null, null]
 
 [node name="Ground" type="StaticBody3D" parent="."]
 collision_mask = 15

@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhydt2sg107ge"]
+
+[ext_resource type="Script" path="res://globals/scene_loader.gd" id="1_ngj7h"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l61ic"]
+font_size = 128
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ew704"]
+font_size = 96
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(5, 5)
+
+[node name="SceneLoader" type="CanvasLayer"]
+layer = 2
+follow_viewport_enabled = true
+script = ExtResource("1_ngj7h")
+
+[node name="LoadingScreen" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="LoadingScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.207843, 0.164706, 1)
+
+[node name="Text" type="Label" parent="LoadingScreen"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -87.5
+offset_bottom = 87.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "LOADING..."
+label_settings = SubResource("LabelSettings_l61ic")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Progress" type="Label" parent="LoadingScreen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.799
+anchor_right = 1.0
+anchor_bottom = 0.799
+offset_top = -65.752
+offset_bottom = 66.248
+grow_horizontal = 2
+grow_vertical = 0
+text = "0%"
+label_settings = SubResource("LabelSettings_ew704")
+horizontal_alignment = 1
+vertical_alignment = 2
