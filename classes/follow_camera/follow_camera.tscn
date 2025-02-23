@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cm61rysa0ld8q"]
+
+[ext_resource type="Script" path="res://classes/follow_camera/follow_camera.gd" id="1_38hek"]
+
+[node name="FollowCamera" type="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0)
+doppler_tracking = 2
+projection = 1
+size = 20.0
+script = ExtResource("1_38hek")

@@ -1,21 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://0gpajxb5vkeo"]
+[gd_scene load_steps=5 format=3 uid="uid://0gpajxb5vkeo"]
 
 [ext_resource type="PackedScene" uid="uid://b75ue0xtdhf4h" path="res://scenes/test.tscn" id="1_ttsxg"]
 [ext_resource type="PackedScene" uid="uid://stp30remop0a" path="res://classes/actor/player/player.tscn" id="2_v0t7p"]
 [ext_resource type="Script" path="res://_editor_stuff/_debug_nodes/switch_cams.gd" id="3_q7hyn"]
+[ext_resource type="PackedScene" uid="uid://cm61rysa0ld8q" path="res://classes/follow_camera/follow_camera.tscn" id="4_x32m2"]
 
 [node name="Main" type="Node"]
 
 [node name="Test" parent="." instance=ExtResource("1_ttsxg")]
 
-[node name="TestCamera1" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.939692, 0.34202, 0, -0.34202, 0.939692, 9, 11.45, 10.5)
-projection = 1
+[node name="FollowCamera" parent="." instance=ExtResource("4_x32m2")]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0)
 current = true
-size = 20.0
+follow_tags = Array[int]([0])
 
-[node name="TestCamera2" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 38.76, 16.655, 16.29)
+[node name="TestCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 27.995, 18.365, 16.29)
 projection = 1
 size = 50.0
 
@@ -29,4 +29,4 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("3_q7hyn")
 keys = Array[int]([49, 50])
-cameras = [NodePath("../TestCamera1"), NodePath("../TestCamera2")]
+cameras = [NodePath("../FollowCamera"), NodePath("../TestCamera")]

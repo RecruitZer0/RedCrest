@@ -1,20 +1,28 @@
-[gd_scene load_steps=19 format=3 uid="uid://b75ue0xtdhf4h"]
+[gd_scene load_steps=22 format=3 uid="uid://b75ue0xtdhf4h"]
 
-[ext_resource type="Texture2D" uid="uid://blvl0my17kkbj" path="res://assets/graphics/world/grass.png" id="1_4dvcf"]
+[ext_resource type="Texture2D" uid="uid://blvl0my17kkbj" path="res://assets/graphics/world/textures/grass.png" id="1_4dvcf"]
+[ext_resource type="Texture2D" uid="uid://dwnwjepewrq56" path="res://assets/graphics/world/textures/bush.png" id="2_bwgxk"]
 [ext_resource type="PackedScene" uid="uid://bunkecwn6k2u6" path="res://classes/actor/actor.tscn" id="3_xiaeb"]
 [ext_resource type="PackedScene" uid="uid://upxfjqwb6nvn" path="res://classes/actor/npc/placeholder_guy/placeholder_guy.tscn" id="4_236mo"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_aanyq"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lpkwn"]
+sky_top_color = Color(0.479044, 0.58998, 0.420116, 1)
+sky_horizon_color = Color(0.789758, 0.510132, 0.220352, 1)
+ground_bottom_color = Color(0.441298, 0.505962, 0.216182, 1)
+ground_horizon_color = Color(0.825497, 0.572126, 0.251479, 1)
 
-[sub_resource type="Sky" id="Sky_flhl8"]
-sky_material = SubResource("ProceduralSkyMaterial_aanyq")
+[sub_resource type="Sky" id="Sky_6uejd"]
+sky_material = SubResource("ProceduralSkyMaterial_lpkwn")
 
-[sub_resource type="Environment" id="Environment_wii04"]
+[sub_resource type="Environment" id="Environment_bgivc"]
 background_mode = 2
-sky = SubResource("Sky_flhl8")
-tonemap_mode = 2
+sky = SubResource("Sky_6uejd")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 0.784314, 1)
+ambient_light_sky_contribution = 0.9
+ambient_light_energy = 6.0
+tonemap_mode = 1
+tonemap_exposure = 0.8
 glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e0t0n"]
@@ -42,6 +50,16 @@ size = Vector3(15, 3, 15)
 vertices = PackedVector3Array(-9.7936, 0.5, -7, -9.7936, 0.5, 7, 36.9564, 0.5, 7, 36.9564, 0.5, -7, 37.9564, 3.5, -7, 37.9564, 3.5, 7, 51.9564, 3.5, 7, 51.9564, 3.5, -7, 52.9564, 6.5, -7, 52.9564, 6.5, 7, 66.9564, 6.5, 7, 66.9564, 6.5, -7, 38.2064, 0.5, -6.75, 38.2064, 0.5, 6.75, 39.2064, 0.5, 6.75, 39.2064, 0.5, -6.75)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(11, 10, 8), PackedInt32Array(8, 10, 9), PackedInt32Array(15, 14, 12), PackedInt32Array(12, 14, 13)]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kyfd3"]
+albedo_texture = ExtResource("2_bwgxk")
+uv1_scale = Vector3(4.54, 4.54, 4.54)
+uv1_offset = Vector3(0.54, 0.25, 0)
+
+[sub_resource type="SphereMesh" id="SphereMesh_jw0ic"]
+material = SubResource("StandardMaterial3D_kyfd3")
+radius = 1.5
+height = 3.0
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_4hsv8"]
 top_radius = 0.75
 bottom_radius = 0.75
@@ -65,11 +83,7 @@ radius = 1.5
 [node name="Test" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_wii04")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -0.999999, -4.37114e-08, 0, 0, 0)
-shadow_enabled = true
+environment = SubResource("Environment_bgivc")
 
 [node name="Ground" type="StaticBody3D" parent="."]
 collision_mask = 15
@@ -123,6 +137,10 @@ end_position = Vector3(2, 3, 0)
 [node name="NavLink6" type="NavigationLink3D" parent="Ground/NavRegion"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.5, 3, 5)
 end_position = Vector3(2, 3, 0)
+
+[node name="Bush" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.1187, 0.44829, 1.29993)
+mesh = SubResource("SphereMesh_jw0ic")
 
 [node name="Background" type="Node3D" parent="."]
 
