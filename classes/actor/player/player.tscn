@@ -22,7 +22,7 @@
 [ext_resource type="Script" path="res://classes/attack/action/hitbox/action_hitbox.gd" id="14_wicsw"]
 [ext_resource type="Script" path="res://classes/attack/action/lift/action_lift.gd" id="15_7khi3"]
 [ext_resource type="Script" path="res://classes/attack/action/summon/action_summon.gd" id="21_gmeki"]
-[ext_resource type="PackedScene" uid="uid://bwtn56mj5ku5l" path="res://classes/actor/player/weapons/test_projectile.tscn" id="22_q2tmf"]
+[ext_resource type="PackedScene" uid="uid://bwtn56mj5ku5l" path="res://classes/actor/projectile/test_projectile/test_projectile.tscn" id="22_q2tmf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ewbjm"]
 radius = 1.0
@@ -450,59 +450,6 @@ tracks/3/keys = {
 "values": [Vector2(192, 195)]
 }
 
-[sub_resource type="Animation" id="Animation_5frks"]
-resource_name = "attack_projectile_test"
-length = 0.450005
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("6_osfek")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [9]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 8]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite:offset")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 192)]
-}
-
 [sub_resource type="Animation" id="Animation_08qgl"]
 resource_name = "attack_uppercut"
 length = 0.48
@@ -770,6 +717,59 @@ tracks/3/keys = {
 "values": [Vector2(0, 194)]
 }
 
+[sub_resource type="Animation" id="Animation_oafoo"]
+resource_name = "attack_projectile_test"
+length = 0.56
+step = 0.04
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_wqjof")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [14]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32, 0.36, 0.4, 0.44, 0.48, 0.52),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(36, 200)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eqaqw"]
 _data = {
 "RESET": SubResource("Animation_exc2i"),
@@ -780,7 +780,7 @@ _data = {
 "attack_grounded_2": SubResource("Animation_wkeoh"),
 "attack_grounded_3": SubResource("Animation_q65d3"),
 "attack_grounded_4": SubResource("Animation_w0sg0"),
-"attack_projectile_test": SubResource("Animation_5frks"),
+"attack_projectile_test": SubResource("Animation_oafoo"),
 "attack_uppercut": SubResource("Animation_08qgl"),
 "fall": SubResource("Animation_2skio"),
 "idle": SubResource("Animation_fbg6s"),
@@ -949,7 +949,6 @@ transitions = ["idle", "run", SubResource("AnimationNodeStateMachineTransition_5
 graph_offset = Vector2(-245.75, 150.237)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_aqyth"]
-graph_offset = Vector2(-472, 324)
 nodes/AttackMachine/node = SubResource("AnimationNodeStateMachine_dibl6")
 nodes/AttackMachine/position = Vector2(-240, 346.667)
 nodes/AttackMachineBlend/node = SubResource("AnimationNodeBlend2_mywfe")
@@ -1343,6 +1342,7 @@ transfer_variables = {
 transfer_start_arguments = {
 "0": NodePath("../../..")
 }
+delay = 0.24
 
 [node name="Input" type="Node" parent="." index="7"]
 script = ExtResource("2_dc65j")

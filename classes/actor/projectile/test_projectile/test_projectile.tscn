@@ -1,29 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwtn56mj5ku5l"]
+[gd_scene load_steps=9 format=3 uid="uid://bwtn56mj5ku5l"]
 
 [ext_resource type="PackedScene" uid="uid://bunkecwn6k2u6" path="res://classes/actor/actor.tscn" id="1_jv8u1"]
+[ext_resource type="Script" path="res://classes/actor/projectile/test_projectile/test_projectile.gd" id="2_87fe3"]
 [ext_resource type="Script" path="res://classes/damage/inflictor/damage_inflictor.gd" id="2_lqi6x"]
 [ext_resource type="Script" path="res://classes/damage/generator/damage_generator.gd" id="3_c8qdh"]
 [ext_resource type="Texture2D" uid="uid://bb6j5yqtyhmhx" path="res://assets/graphics/entities/test_projectile/test_projectile.png" id="4_swiop"]
-
-[sub_resource type="GDScript" id="GDScript_arhtr"]
-resource_name = "test_projectile"
-script/source = "extends Actor
-
-@export var direction: Vector3
-
-@onready var damage_inflictor: DamageInflictor = $DamageInflictor
-
-func _physics_process(delta: float) -> void:
-	sprite.flip_h = direction.x < 0
-	direction.y -= 0.01
-	rotation.z += 15 * delta
-	movement_dir = direction.normalized()
-	super(delta)
-
-func _attack_summon_trigger_start(ignored_node: Node) -> void:
-	if ignored_node is Actor:
-		damage_inflictor.ignored_receivers.append(ignored_node.damage_receiver)
-"
 
 [sub_resource type="Resource" id="Resource_smxiw"]
 script = ExtResource("3_c8qdh")
@@ -40,15 +21,18 @@ crit_multiplier = 2.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_jjnaf"]
 radius = 1.0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_a1wv8"]
+size = Vector3(3, 1, 1)
+
 [node name="TestProjectile" instance=ExtResource("1_jv8u1")]
 collision_layer = 2
-script = SubResource("GDScript_arhtr")
+script = ExtResource("2_87fe3")
 direction = Vector3(0, 0, 0)
 max_speed = 60.0
 acceleration = 6000.0
 gravity = 0.0
 can_fly = true
-shadow_radius = 0.6
+shadow_radius = 0.8
 tags = Array[int]([1])
 
 [node name="DamageInflictor" type="Area3D" parent="." index="0"]
@@ -64,7 +48,7 @@ shape = SubResource("SphereShape3D_jjnaf")
 texture = ExtResource("4_swiop")
 
 [node name="Collision" parent="." index="4"]
-shape = SubResource("SphereShape3D_jjnaf")
+shape = SubResource("BoxShape3D_a1wv8")
 
 [node name="VisibleOnScreen" parent="." index="8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
