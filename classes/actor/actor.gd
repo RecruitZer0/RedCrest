@@ -10,6 +10,7 @@ enum Tags {
 	NEUTRAL,
 }
 
+@onready var health: ActorHealth = $Health
 @onready var sprite: Sprite3D = $Sprite
 @onready var shadow: RayCast3D = $Shadow
 @onready var shadow_sprite: Sprite3D = $Shadow/ShadowSprite

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=3 format=3 uid="uid://yn740vrlr3ub"]
+
+[ext_resource type="Texture2D" uid="uid://dg4b0622fxbu7" path="res://assets/graphics/weapons/golden_sword.png" id="1_062if"]
+[ext_resource type="Script" uid="uid://dh2843b44hix7" path="res://classes/actor/player/weapons/weapon.gd" id="1_qaaqa"]
+
+[resource]
+script = ExtResource("1_qaaqa")
+name = "Golden Sword"
+description = "Your trusty and almighty golden sword!"
+icon = ExtResource("1_062if")
+color = Color(1, 0.847059, 0, 1)
+metadata/_custom_type_script = "uid://dh2843b44hix7"

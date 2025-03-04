@@ -1,12 +1,16 @@
-[gd_scene load_steps=25 format=3 uid="uid://b75ue0xtdhf4h"]
+[gd_scene load_steps=29 format=3 uid="uid://b75ue0xtdhf4h"]
 
 [ext_resource type="Texture2D" uid="uid://blvl0my17kkbj" path="res://assets/graphics/world/textures/grass.png" id="1_4dvcf"]
 [ext_resource type="PackedScene" uid="uid://cm61rysa0ld8q" path="res://classes/follow_camera/follow_camera.tscn" id="1_cnvi8"]
 [ext_resource type="Texture2D" uid="uid://dwnwjepewrq56" path="res://assets/graphics/world/textures/bush.png" id="2_bwgxk"]
 [ext_resource type="PackedScene" uid="uid://stp30remop0a" path="res://classes/actor/player/player.tscn" id="2_e3vgr"]
+[ext_resource type="Script" uid="uid://dh2843b44hix7" path="res://classes/actor/player/weapons/weapon.gd" id="2_yk7ts"]
+[ext_resource type="Resource" uid="uid://yn740vrlr3ub" path="res://classes/actor/player/weapons/golden_sword.tres" id="3_ajshl"]
 [ext_resource type="Script" uid="uid://cilxypq2tw0ax" path="res://_editor_stuff/_debug_nodes/switch_cams.gd" id="3_dr8g8"]
+[ext_resource type="PackedScene" uid="uid://ry3fdpidnd22" path="res://classes/game_hud/game_hud.tscn" id="3_jcd4p"]
 [ext_resource type="PackedScene" uid="uid://bunkecwn6k2u6" path="res://classes/actor/actor.tscn" id="3_xiaeb"]
 [ext_resource type="PackedScene" uid="uid://upxfjqwb6nvn" path="res://classes/actor/npc/placeholder_guy/placeholder_guy.tscn" id="4_236mo"]
+[ext_resource type="Resource" uid="uid://coi7xadisfwcw" path="res://classes/actor/player/weapons/evil_sword.tres" id="4_ajshl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lpkwn"]
 sky_top_color = Color(0.479044, 0.58998, 0.420116, 1)
@@ -87,12 +91,17 @@ radius = 1.5
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bgivc")
 
-[node name="Player" parent="." instance=ExtResource("2_e3vgr")]
+[node name="Player" parent="." node_paths=PackedStringArray("game_hud") instance=ExtResource("2_e3vgr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10628, 3.81063, 0.37693)
+game_hud = NodePath("../FollowCamera/GameHUD")
+weapon_list = Array[ExtResource("2_yk7ts")]([ExtResource("3_ajshl"), ExtResource("4_ajshl")])
 
 [node name="FollowCamera" parent="." instance=ExtResource("1_cnvi8")]
 current = true
 follow_tags = Array[int]([0])
+
+[node name="GameHUD" parent="FollowCamera" node_paths=PackedStringArray("health_actor") instance=ExtResource("3_jcd4p")]
+health_actor = NodePath("../../Player")
 
 [node name="TestCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 27.995, 18.365, 16.29)
@@ -192,6 +201,10 @@ skeleton = NodePath("../..")
 [node name="Dummy" parent="." instance=ExtResource("3_xiaeb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.14434, 3.31671, 0.357378)
 script = SubResource("GDScript_04r36")
+
+[node name="Health" parent="Dummy" index="0"]
+max_health = 200
+health = 200
 
 [node name="Collision" parent="Dummy" index="3"]
 shape = SubResource("CapsuleShape3D_x4ssm")

@@ -1,5 +1,5 @@
 @tool
-extends Node
+class_name ActorHealth extends Node
 
 @export var max_health: int :
 	set(value):
@@ -14,12 +14,12 @@ extends Node
 		if health > max_health:
 			health = max_health
 
-signal health_changed()
+signal health_changed(actor_health: ActorHealth, damage: Damage)
 signal died(damage: Damage)
 
 
 func _handle_damage(damage: Damage) -> void:
 	health -= damage.damage
-	health_changed.emit()
+	health_changed.emit(self, damage)
 	if health <= 0:
-		died.emit()
+		died.emit(damage)

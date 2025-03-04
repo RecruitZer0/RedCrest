@@ -52,3 +52,8 @@ func _attacking() -> void:
 				player.attack_machine.make_attack(player.attack_machine.by_name("Aerial1"))
 	if Input.is_action_just_pressed("ui_focus_next"):
 		player.attack_machine.make_attack(player.attack_machine.by_name("ProjectileTest"))
+	
+	if Input.is_action_just_pressed("ui_up"):
+		player.active_weapon += 1
+	elif Input.is_action_just_pressed("ui_down"):
+		player.active_weapon -= 1

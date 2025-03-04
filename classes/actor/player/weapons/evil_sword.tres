@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=3 format=3 uid="uid://coi7xadisfwcw"]
+
+[ext_resource type="Texture2D" uid="uid://dqao0chcymjsw" path="res://assets/graphics/weapons/evil_sword.png" id="1_ge55y"]
+[ext_resource type="Script" uid="uid://dh2843b44hix7" path="res://classes/actor/player/weapons/weapon.gd" id="2_lmjhh"]
+
+[resource]
+script = ExtResource("2_lmjhh")
+name = "Evil Sword >:)"
+description = ">:)"
+icon = ExtResource("1_ge55y")
+color = Color(0, 0.152941, 0.917647, 1)
+metadata/_custom_type_script = "uid://dh2843b44hix7"
