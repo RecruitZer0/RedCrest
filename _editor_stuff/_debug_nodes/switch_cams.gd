@@ -1,12 +1,11 @@
 extends Control
 
-@export var keys: Array[Key]
-@export var cameras: Array[Camera3D]
+@export var cameras: Dictionary[Key, Camera3D]
 
 
 func _process(_delta: float) -> void:
-	for i in range(keys.size()):
-		if Input.is_key_label_pressed(keys[i]):
-			for camera in cameras:
+	for key in cameras.keys():
+		if Input.is_key_label_pressed(key):
+			for camera in cameras.values():
 				camera.current = false
-			cameras[i].current = true
+			cameras[key].current = true

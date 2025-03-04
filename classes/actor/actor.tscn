@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://bunkecwn6k2u6"]
 
-[ext_resource type="Script" path="res://classes/actor/actor.gd" id="1_wem67"]
-[ext_resource type="Script" path="res://classes/actor/actor_health.gd" id="2_6bkps"]
+[ext_resource type="Script" uid="uid://dnhk1n101ifar" path="res://classes/actor/actor.gd" id="1_wem67"]
+[ext_resource type="Script" uid="uid://c5h3ftvakjsoa" path="res://classes/actor/actor_health.gd" id="2_6bkps"]
 [ext_resource type="Texture2D" uid="uid://bsnvehsyf2h6d" path="res://assets/graphics/little_knight.png" id="2_jknfh"]
-[ext_resource type="Script" path="res://classes/damage/receiver/damage_receiver.gd" id="4_apett"]
+[ext_resource type="Script" uid="uid://bdc3dlncaqm0f" path="res://classes/damage/receiver/damage_receiver.gd" id="4_apett"]
 
 [sub_resource type="Gradient" id="Gradient_5r2i4"]
 interpolation_mode = 1

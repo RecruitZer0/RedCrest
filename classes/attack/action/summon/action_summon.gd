@@ -9,9 +9,9 @@ class_name AttackActionSummon extends AttackAction
 @export var summon_scene: PackedScene ## The Scene that will be instantiated and added to the scene. By default, the Node's global position will be set to this Node's global position, if the summoned has this variable. When succesfully added, the instance of this scene will set [member summoned_node].
 @export var summon_target: Node ## The target of the [member summoned_node], what this means is that when the [member summoned_node] is going to be added to the scene, it will be added as a [b]sibling[/b] of the target.
 @export_group("Transfer Values", "transfer_")
-@export var transfer_variables: Dictionary ## This is a transfer Dictionary, it's keys must be [StringName]s and they have support for [b]suffixes[/b].[br] The values of this Dictionary will set the [member summoned_node]'s according to the key's names. The Variables are set before the [member summoned_node] is added to the [SceneTree]. 
-@export var transfer_start_arguments: Dictionary ## This is a transfer Dictionary, it's keys must be [StringName]s and they have support for [b]suffixes[/b].[br] The name set on the keys don't matter, except for the use of suffixes. The order that the keys are arranged matter.[br] Sets the arguments to be passed to the [member summoned_node]'s start function (see [constant SUMMON_START_FUNCTION]). The Start Function is executed after the [member summoned_node] is added to the [SceneTree]. 
-@export var transfer_end_arguments: Dictionary ## This is a transfer Dictionary, it's keys must be [StringName]s and they have support for [b]suffixes[/b].[br] The name set on the keys don't matter, except for the use of suffixes. The order that the keys are arranged matter.[br] Sets the arguments to be passed to the [member summoned_node]'s end function. (see [constant SUMMON_END_FUNCTION])
+@export var transfer_variables: Dictionary[StringName, Variant] ## This is a transfer Dictionary, it's keys must be [StringName]s and they have support for [b]suffixes[/b].[br] The values of this Dictionary will set the [member summoned_node]'s according to the key's names. The Variables are set before the [member summoned_node] is added to the [SceneTree]. 
+@export var transfer_start_arguments: Dictionary[StringName, Variant] ## This is a transfer Dictionary, it's keys must be [StringName]s and they have support for [b]suffixes[/b].[br] The name set on the keys don't matter, except for the use of suffixes. The order that the keys are arranged matter.[br] Sets the arguments to be passed to the [member summoned_node]'s start function (see [constant SUMMON_START_FUNCTION]). The Start Function is executed after the [member summoned_node] is added to the [SceneTree]. 
+@export var transfer_end_arguments: Dictionary[StringName, Variant] ## This is a transfer Dictionary, it's keys must be [StringName]s and they have support for [b]suffixes[/b].[br] The name set on the keys don't matter, except for the use of suffixes. The order that the keys are arranged matter.[br] Sets the arguments to be passed to the [member summoned_node]'s end function. (see [constant SUMMON_END_FUNCTION])
 
 var summoned_node: Node ## References the last summoned Node, even if [AttackAction.duration] is set to default (0.001).
 
@@ -92,7 +92,7 @@ func call_end_function(node: Node) -> void:
 	node.callv(SUMMON_END_FUNCTION, args.values())
 
 ## Returns a new Dictionary after calculating the [param raw_dictionary]'s suffixes, as well as other things like converting [NodePath] to [Node].
-func parsed_dictionary(raw_dictionary: Dictionary) -> Dictionary:
+func parsed_dictionary(raw_dictionary: Dictionary[StringName, Variant]) -> Dictionary[StringName, Variant]:
 	var dictionary := raw_dictionary.duplicate(true)
 	for var_name in dictionary.keys():
 		var name_array: PackedStringArray = var_name.split("+")

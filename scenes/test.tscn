@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cm61rysa0ld8q" path="res://classes/follow_camera/follow_camera.tscn" id="1_cnvi8"]
 [ext_resource type="Texture2D" uid="uid://dwnwjepewrq56" path="res://assets/graphics/world/textures/bush.png" id="2_bwgxk"]
 [ext_resource type="PackedScene" uid="uid://stp30remop0a" path="res://classes/actor/player/player.tscn" id="2_e3vgr"]
-[ext_resource type="Script" path="res://_editor_stuff/_debug_nodes/switch_cams.gd" id="3_dr8g8"]
+[ext_resource type="Script" uid="uid://cilxypq2tw0ax" path="res://_editor_stuff/_debug_nodes/switch_cams.gd" id="3_dr8g8"]
 [ext_resource type="PackedScene" uid="uid://bunkecwn6k2u6" path="res://classes/actor/actor.tscn" id="3_xiaeb"]
 [ext_resource type="PackedScene" uid="uid://upxfjqwb6nvn" path="res://classes/actor/npc/placeholder_guy/placeholder_guy.tscn" id="4_236mo"]
 
@@ -21,11 +21,10 @@ sky_material = SubResource("ProceduralSkyMaterial_lpkwn")
 background_mode = 2
 sky = SubResource("Sky_6uejd")
 ambient_light_source = 3
-ambient_light_color = Color(1, 1, 0.784314, 1)
+ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.9
-ambient_light_energy = 6.0
-tonemap_mode = 1
-tonemap_exposure = 0.8
+ambient_light_energy = 2.5
+tonemap_mode = 4
 glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e0t0n"]
@@ -92,7 +91,6 @@ environment = SubResource("Environment_bgivc")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.10628, 3.81063, 0.37693)
 
 [node name="FollowCamera" parent="." instance=ExtResource("1_cnvi8")]
-transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0)
 current = true
 follow_tags = Array[int]([0])
 
@@ -107,8 +105,10 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("3_dr8g8")
-keys = Array[int]([49, 50])
-cameras = [null, null]
+cameras = {
+49: NodePath("../FollowCamera"),
+50: NodePath("../TestCamera")
+}
 
 [node name="Ground" type="StaticBody3D" parent="."]
 collision_mask = 15

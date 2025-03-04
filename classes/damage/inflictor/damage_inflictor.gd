@@ -11,7 +11,7 @@ signal hit(receiver: DamageReceiver)
 ## 
 @export var ignored_receivers: Array[DamageReceiver] = []
 
-var _areas_in: Dictionary = {}
+var _areas_in: Dictionary[DamageReceiver, float] = {}
 
 
 func _ready() -> void:
@@ -33,7 +33,7 @@ func _physics_process(delta: float) -> void:
 
 func _area_entered(area: Area3D) -> void:
 	if area is DamageReceiver and (owner != area.owner) and area not in ignored_receivers:
-		_areas_in[area] = generator.stun_duration
+		_areas_in[area as DamageReceiver] = generator.stun_duration
 		hit.emit(area)
 		area.receive_damage(generator.generate(self))
 
