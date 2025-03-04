@@ -52,5 +52,6 @@ shape = SubResource("BoxShape3D_a1wv8")
 
 [node name="VisibleOnScreen" parent="." index="8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+layers = 64
 
 [connection signal="hit" from="DamageInflictor" to="." method="queue_free" unbinds=1]

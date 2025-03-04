@@ -1350,3 +1350,6 @@ script = ExtResource("2_dc65j")
 [node name="Collision" parent="DamageReceiver" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
 shape = SubResource("SphereShape3D_y5ly7")
+
+[node name="VisibleOnScreen" parent="." index="9"]
+layers = 2

@@ -52,4 +52,7 @@ shape = SubResource("CapsuleShape3D_cbmm8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
 shape = SubResource("SphereShape3D_6n4ms")
 
+[node name="VisibleOnScreen" parent="." index="10"]
+layers = 4
+
 [connection signal="after_damaged" from="DamageReceiver" to="." method="_switch_to_attacker"]

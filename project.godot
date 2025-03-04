@@ -21,6 +21,8 @@ SceneLoader="*res://globals/scene_loader.tscn"
 
 [display]
 
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 
 [file_customization]
@@ -89,6 +91,7 @@ attack_heavy={
 3d_render/layer_4="Props"
 3d_render/layer_5="Effects"
 3d_render/layer_6="Particles"
+3d_render/layer_7="Projectiles"
 3d_physics/layer_1="World (Ground and walls)"
 3d_physics/layer_2="Moving Actors (Players & Enemies)"
 3d_physics/layer_3="Static Actors (Props)"
